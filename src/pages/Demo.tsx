@@ -21,22 +21,22 @@ export default function Demo({ onBack }: DemoProps) {
   const status = "SYSTEM IDLE";
 
   return (
-    <div className="fixed inset-0 bg-[#03070b] text-white flex flex-col font-jakarta z-50">
+    <div className="fixed inset-0 z-50 flex flex-col bg-sara-black text-sara-off-white">
       {/* TOP NAVBAR */}
-      <nav className="w-full h-16 border-b border-white/5 flex items-center justify-between px-6 bg-[#03070b] sticky top-0 z-50">
+      <nav className="sticky top-0 z-50 flex h-16 w-full items-center justify-between border-b border-sara-light-green/15 bg-sara-black px-6">
         <div className="flex items-center gap-4">
           <button
             onClick={onBack}
-            className="text-zinc-500 hover:text-white transition-all"
+            className="text-sara-light-grey hover:text-sara-off-white transition-all"
           >
             <ArrowLeft size={18} />
           </button>
           <div className="flex items-center gap-1">
-            <span className="text-orange-500 font-bold">~</span>
-            <span className="text-white font-black tracking-tighter uppercase text-sm">
+            <span className="font-bold text-sara-light-green">~</span>
+            <span className="text-sm uppercase tracking-[0.2em] text-sara-off-white">
               JUST
             </span>
-            <span className="text-orange-500 font-black tracking-tighter uppercase text-sm">
+            <span className="text-sm uppercase tracking-[0.2em] text-sara-light-green">
               TRADIE MOBILE
             </span>
           </div>
@@ -45,11 +45,11 @@ export default function Demo({ onBack }: DemoProps) {
         <div className="flex items-center gap-6">
           <Volume2
             size={20}
-            className="text-orange-500 hover:text-orange-400 cursor-pointer"
+            className="cursor-pointer text-sara-light-green hover:text-sara-off-white"
           />
           <Settings
             size={20}
-            className="text-zinc-600 hover:text-white cursor-pointer transition-all"
+            className="cursor-pointer text-sara-mid-grey hover:text-sara-off-white transition-all"
             onClick={() => setShowConfig(!showConfig)}
           />
         </div>
@@ -57,15 +57,15 @@ export default function Demo({ onBack }: DemoProps) {
 
       {/* BUSINESS CONFIGURATION MODAL (Bar at top) */}
       {showConfig && (
-        <div className="w-full bg-[#090e14] border-b border-orange-500/20 p-6 animate-in slide-in-from-top duration-300">
+        <div className="w-full animate-in border-b border-sara-light-green/15 bg-sara-dark-grey p-6 slide-in-from-top duration-300">
           <div className="max-w-[1400px] mx-auto space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-orange-500">
+              <span className="text-[10px] uppercase tracking-[0.3em] text-sara-light-green">
                 Business Configuration
               </span>
               <button
                 onClick={() => setShowConfig(false)}
-                className="text-[10px] font-black uppercase text-zinc-600 hover:text-white flex items-center gap-2"
+                className="flex items-center gap-2 text-[10px] uppercase text-sara-mid-grey hover:text-sara-off-white"
               >
                 Close
               </button>
@@ -91,22 +91,22 @@ export default function Demo({ onBack }: DemoProps) {
       {/* MAIN LAYOUT */}
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
         {/* CENTER CONTENT (Main Demo) */}
-        <div className="flex-1 flex flex-col items-center justify-center p-8 bg-black/40 relative overflow-y-auto">
+        <div className="relative flex flex-1 flex-col items-center justify-center overflow-y-auto bg-sara-dark-green/18 p-8">
           <div className="max-w-xl w-full flex flex-col items-center text-center space-y-8 py-12">
             {/* BADGE */}
-            <div className="inline-flex items-center gap-2 bg-[#12181e] border border-orange-500/20 px-4 py-2 rounded-full">
-              <Phone size={14} className="text-orange-500" />
-              <span className="text-[10px] font-black uppercase tracking-widest text-orange-500">
+            <div className="inline-flex items-center gap-2 rounded-sm border border-sara-light-green/20 bg-sara-dark-grey px-4 py-2">
+              <Phone size={14} className="text-sara-light-green" />
+              <span className="text-[10px] uppercase tracking-[0.25em] text-sara-light-green">
                 Live Demo
               </span>
             </div>
 
             {/* HEADERS */}
             <div className="space-y-4">
-              <h1 className="text-xl md:text-3xl font-black tracking-tight text-white leading-tight">
+              <h1 className="text-3xl leading-tight tracking-tight text-sara-off-white md:text-5xl">
                 Experience Bele.Ai in Action
               </h1>
-              <p className="text-zinc-500 text-sm max-w-md mx-auto leading-relaxed font-medium">
+              <p className="mx-auto max-w-md text-sm leading-relaxed text-sara-light-grey">
                 Watch how Bele.Ai handles a missed call, captures the lead, and
                 sends a real SMS to your phone.
               </p>
@@ -114,9 +114,9 @@ export default function Demo({ onBack }: DemoProps) {
 
             {/* INPUT SECTION */}
             <div className="w-full space-y-2 text-left">
-              <div className="flex items-center gap-2 text-orange-500 ml-1">
-                <div className="w-4 h-5 border-2 border-orange-500 rounded-sm flex items-center justify-center">
-                  <div className="w-0.5 h-0.5 bg-orange-500 rounded-full mb-3" />
+              <div className="ml-1 flex items-center gap-2 text-sara-light-green">
+                <div className="flex h-5 w-4 items-center justify-center rounded-sm border-2 border-sara-light-green">
+                  <div className="mb-3 h-0.5 w-0.5 rounded-full bg-sara-light-green" />
                 </div>
                 <label className="text-[10px] font-black uppercase tracking-widest">
                   Your Mobile Number
@@ -129,31 +129,31 @@ export default function Demo({ onBack }: DemoProps) {
                   value={mobileNumber}
                   onChange={(e) => setMobileNumber(e.target.value)}
                   placeholder="0412 345 678"
-                  className="w-full bg-[#090e14] border border-white/5 rounded-2xl px-6 py-3 text-white placeholder-zinc-700 font-mono tracking-wider focus:outline-none focus:border-orange-500/50 transition-all"
+                  className="w-full rounded-2xl border border-sara-light-green/12 bg-sara-dark-grey px-6 py-3 font-mono tracking-wider text-sara-off-white placeholder-sara-mid-grey transition-all focus:outline-none focus:border-sara-light-green/50"
                 />
-                <span className="absolute right-6 top-1/2 -translate-y-1/2 text-xs font-bold text-zinc-700">
+                <span className="absolute right-6 top-1/2 -translate-y-1/2 text-xs text-sara-mid-grey">
                   AU
                 </span>
               </div>
-              <p className="text-zinc-600 text-[10px] font-bold text-center">
+              <p className="text-center text-[10px] text-sara-mid-grey">
                 You'll receive a real SMS confirmation when the demo completes
               </p>
             </div>
 
             {/* BUTTONS */}
             <div className="w-full space-y-4">
-              <button className="w-full flex items-center justify-center gap-3 bg-orange-500 hover:bg-orange-400 text-black px-8 py-3 rounded-2xl text-sm font-black transition-all shadow-[0_10px_30px_rgba(249,115,22,0.2)]">
+              <button className="flex w-full items-center justify-center gap-3 rounded-md bg-sara-light-green px-8 py-3 text-sm uppercase tracking-[0.24em] text-sara-dark-green transition-all hover:bg-[#b7c5a2]">
                 <Sun size={20} className="stroke-[3]" />
                 BUSINESS HOURS DEMO
               </button>
-              <button className="w-full flex items-center justify-center gap-3 bg-[#090e14] hover:bg-[#12181e] border border-white/5 text-white px-8 py-3 rounded-2xl text-sm font-black transition-all">
-                <Moon size={20} className="text-orange-500" />
+              <button className="flex w-full items-center justify-center gap-3 rounded-md border border-sara-light-green/15 bg-sara-dark-grey px-8 py-3 text-sm uppercase tracking-[0.24em] text-sara-off-white transition-all hover:bg-sara-black">
+                <Moon size={20} className="text-sara-light-green" />
                 AFTER HOURS DEMO
               </button>
             </div>
 
             {/* FOOTNOTE */}
-            <p className="text-[10px] text-zinc-600 leading-relaxed font-bold max-w-sm uppercase tracking-wider">
+            <p className="max-w-sm text-[10px] uppercase tracking-[0.18em] text-sara-mid-grey">
               Business hours: Tradie gets 3 rings to answer. After hours:
               Bele.Ai picks up automatically.
             </p>
@@ -161,10 +161,10 @@ export default function Demo({ onBack }: DemoProps) {
         </div>
 
         {/* RIGHT PANEL (Workflow Sidebar) */}
-        <aside className="w-full lg:w-[380px] xl:w-[450px] bg-[#03070b] border-l border-white/5 flex flex-col">
+        <aside className="flex w-full flex-col border-l border-sara-light-green/15 bg-sara-black lg:w-[380px] xl:w-[450px]">
           {/* CALL FLOW SECTION */}
-          <div className="p-8 pb-12 border-b border-white/5 flex-1 overflow-y-auto">
-            <div className="flex items-center gap-2 mb-4 text-orange-500">
+          <div className="flex-1 overflow-y-auto border-b border-sara-light-green/15 p-8 pb-12">
+            <div className="mb-4 flex items-center gap-2 text-sara-light-green">
               <Phone size={16} className="rotate-90" />
               <span className="text-[10px] font-black uppercase tracking-[0.3em]">
                 Call Flow
@@ -181,8 +181,8 @@ export default function Demo({ onBack }: DemoProps) {
               />
 
               {/* CONNECTING LINE */}
-              <div className="w-[1px] h-10 bg-gradient-to-b from-orange-500/50 to-transparent relative">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rotate-45 border border-orange-500/30 bg-[#03070b]" />
+              <div className="relative h-10 w-[1px] bg-gradient-to-b from-sara-light-green/50 to-transparent">
+                <div className="absolute top-1/2 left-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rotate-45 border border-sara-light-green/30 bg-sara-black" />
               </div>
 
               {/* FLOW STEP 2 */}
@@ -193,25 +193,25 @@ export default function Demo({ onBack }: DemoProps) {
               />
 
               {/* CONNECTING LINE */}
-              <div className="w-[1px] h-10 bg-white/10 relative">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rotate-45 border border-white/10 bg-[#03070b]" />
+              <div className="relative h-10 w-[1px] bg-sara-light-grey/20">
+                <div className="absolute top-1/2 left-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rotate-45 border border-sara-light-grey/20 bg-sara-black" />
               </div>
 
               {/* DECISION NODE */}
-              <div className="w-24 h-24 rotate-45 border border-white/10 flex items-center justify-center relative translate-y-2">
-                <span className="-rotate-45 text-[10px] font-black uppercase tracking-widest text-zinc-700 text-center leading-tight">
+              <div className="relative flex h-24 w-24 translate-y-2 rotate-45 items-center justify-center border border-sara-light-grey/20">
+                <span className="-rotate-45 text-center text-[10px] uppercase tracking-[0.2em] text-sara-mid-grey leading-tight">
                   Call <br /> Answered?
                 </span>
-                <div className="absolute -right-4 -top-4 w-1.5 h-1.5 rounded-full bg-zinc-800" />
+                <div className="absolute -right-4 -top-4 h-1.5 w-1.5 rounded-full bg-sara-dark-grey" />
               </div>
             </div>
           </div>
 
           {/* CAPTURED DATA SECTION */}
           <div className="p-8 space-y-4">
-            <div className="flex items-center gap-2 text-orange-500">
-              <div className="w-1.5 h-1.5 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,1)]" />
-              <span className="text-[10px] font-black uppercase tracking-[0.3em]">
+            <div className="flex items-center gap-2 text-sara-light-green">
+              <div className="h-1.5 w-1.5 rounded-full bg-sara-light-green shadow-[0_0_8px_rgba(163,177,138,1)]" />
+              <span className="text-[10px] uppercase tracking-[0.3em]">
                 Captured Data
               </span>
             </div>
@@ -225,15 +225,15 @@ export default function Demo({ onBack }: DemoProps) {
           </div>
 
           {/* BOTTOM STATUS BAR */}
-          <div className="w-full h-12 bg-black/50 border-t border-white/5 px-6 flex items-center justify-between font-mono text-[10px] font-black tracking-widest text-zinc-700">
+          <div className="flex h-12 w-full items-center justify-between border-t border-sara-light-green/15 bg-sara-black/60 px-6 font-mono text-[10px] uppercase tracking-[0.2em] text-sara-mid-grey">
             <div className="flex items-center gap-2">
-              <div className="w-1 h-1 rounded-full bg-zinc-600" />
+              <div className="h-1 w-1 rounded-full bg-sara-mid-grey" />
               {status}
             </div>
             <div className="flex items-center gap-6">
               <span>00:00</span>
               <span>RINGS: {rings}/3</span>
-              <span className="text-orange-500 opacity-60">BELE.AI</span>
+              <span className="text-sara-light-green opacity-60">BELE.AI</span>
             </div>
           </div>
         </aside>
@@ -245,12 +245,12 @@ export default function Demo({ onBack }: DemoProps) {
 function ConfigInput({ label, defaultValue, isSelect }: any) {
   return (
     <div className="space-y-2">
-      <label className="text-[9px] font-black text-zinc-600 uppercase tracking-widest">
+      <label className="text-[9px] uppercase tracking-[0.2em] text-sara-mid-grey">
         {label}
       </label>
       <div className="relative">
         {isSelect ? (
-          <select className="w-full bg-black/40 border border-white/5 rounded-lg px-4 py-3 text-xs text-white appearance-none focus:outline-none focus:border-orange-500/50">
+          <select className="w-full appearance-none rounded-lg border border-sara-light-green/12 bg-sara-dark-grey px-4 py-3 text-xs text-sara-off-white focus:outline-none focus:border-sara-light-green/50">
             <option>Plumber</option>
             <option>Electrician</option>
             <option>Carpenter</option>
@@ -264,7 +264,7 @@ function ConfigInput({ label, defaultValue, isSelect }: any) {
           <input
             type="text"
             defaultValue={defaultValue}
-            className="w-full bg-black/40 border border-white/5 rounded-lg px-4 py-3 text-xs text-white focus:outline-none focus:border-orange-500/50 font-mono"
+            className="w-full rounded-lg border border-sara-light-green/12 bg-sara-dark-grey px-4 py-3 text-xs font-mono text-sara-off-white focus:outline-none focus:border-sara-light-green/50"
           />
         )}
       </div>
@@ -277,29 +277,29 @@ function FlowCard({ title, sub, icon, active = false }: any) {
     <div
       className={`w-full max-w-[280px] p-4 rounded-xl border flex items-center gap-4 transition-all ${
         active
-          ? "bg-orange-500/5 border-orange-500/40 text-white"
-          : "bg-[#090e14] border-white/5 text-zinc-500"
+          ? "bg-sara-light-green/10 border-sara-light-green/40 text-sara-off-white"
+          : "bg-sara-dark-grey border-sara-light-green/12 text-sara-light-grey"
       }`}
     >
       <div
-        className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${active ? "bg-orange-500/10 text-orange-500" : "bg-black/40 text-zinc-700"}`}
+        className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${active ? "bg-sara-light-green/10 text-sara-light-green" : "bg-sara-black/30 text-sara-mid-grey"}`}
       >
         {icon}
       </div>
       <div className="space-y-0.5">
         <p
-          className={`text-xs font-black tracking-widest uppercase ${active ? "text-white" : "text-zinc-500"}`}
+          className={`text-xs uppercase tracking-[0.2em] ${active ? "text-sara-off-white" : "text-sara-light-grey"}`}
         >
           {title}
         </p>
         <p
-          className={`text-[10px] font-bold ${active ? "text-zinc-400" : "text-zinc-700"}`}
+          className={`text-[10px] ${active ? "text-sara-light-grey" : "text-sara-mid-grey"}`}
         >
           {sub}
         </p>
       </div>
       {active && (
-        <div className="ml-auto w-1.5 h-1.5 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,1)]" />
+        <div className="ml-auto h-1.5 w-1.5 rounded-full bg-sara-light-green shadow-[0_0_8px_rgba(163,177,138,1)]" />
       )}
     </div>
   );
@@ -307,15 +307,15 @@ function FlowCard({ title, sub, icon, active = false }: any) {
 
 function CapturedItem({ label, icon }: any) {
   return (
-    <div className="w-full bg-[#090e14]/50 border border-white/5 rounded-xl px-5 py-4 flex items-center gap-4 group hover:border-white/10 transition-all">
-      <div className="text-zinc-700 group-hover:text-zinc-500 transition-colors">
+    <div className="group flex w-full items-center gap-4 rounded-xl border border-sara-light-green/12 bg-sara-dark-grey/70 px-5 py-4 transition-all hover:border-sara-light-green/24">
+      <div className="text-sara-mid-grey transition-colors group-hover:text-sara-light-grey">
         {icon}
       </div>
       <div className="space-y-1">
-        <p className="text-[9px] font-black tracking-[0.2em] text-zinc-600">
+        <p className="text-[9px] uppercase tracking-[0.2em] text-sara-mid-grey">
           {label}
         </p>
-        <p className="text-xs font-bold text-zinc-800 tracking-widest">—</p>
+        <p className="text-xs tracking-[0.2em] text-sara-light-grey">—</p>
       </div>
     </div>
   );

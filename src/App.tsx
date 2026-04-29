@@ -44,7 +44,7 @@ function App() {
   };
 
   return (
-    <div className="bg-[#03070b] overflow-x-hidden min-h-screen">
+    <div className="bg-sara-black overflow-x-hidden min-h-screen text-sara-off-white">
       {view === 'landing' && (
         <>
           <Navbar 

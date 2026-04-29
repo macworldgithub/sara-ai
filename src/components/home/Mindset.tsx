@@ -13,14 +13,14 @@ export default function Mindset({ onGetStarted, onWatchDemo }: MindsetProps) {
   ];
 
   return (
-    <section className="bg-[#03070b] py-24 px-6 sm:px-12 lg:px-24">
-      <div className="max-w-4xl mx-auto flex flex-col items-center">
+    <section className="bg-sara-dark-green px-6 py-24 text-sara-off-white sm:px-12 lg:px-24">
+      <div className="mx-auto flex max-w-4xl flex-col items-center">
         {/* MINDSET HEADER */}
         <div className="text-center space-y-4 mb-12">
-          <span className="text-[10px] sm:text-[11px] font-black tracking-[0.2em] text-zinc-500 uppercase">
+          <span className="text-[10px] uppercase tracking-[0.28em] text-sara-light-grey sm:text-[11px]">
             Our Mindset
           </span>
-          <h2 className="text-2xl md:text-4xl font-black leading-tight tracking-tighter text-white">
+          <h2 className="text-3xl leading-tight tracking-tight text-sara-off-white md:text-5xl">
             A "no frills" approach.
           </h2>
         </div>
@@ -30,12 +30,12 @@ export default function Mindset({ onGetStarted, onWatchDemo }: MindsetProps) {
           {principles.map((principle, index) => (
             <div
               key={index}
-              className="bg-[#090e14]/30 border border-white/5 p-4 rounded-2xl flex items-center gap-4 transition-all hover:border-orange-500/30 group"
+              className="group flex items-center gap-4 rounded-2xl border border-sara-light-green/16 bg-sara-black/20 p-4 transition-all hover:border-sara-light-green/35"
             >
-              <div className="text-orange-500 group-hover:scale-110 transition-transform">
+              <div className="text-sara-light-green transition-transform group-hover:scale-110">
                 <Zap size={24} fill="currentColor" fillOpacity={0.2} />
               </div>
-              <p className="text-white font-bold text-lg sm:text-xl tracking-tight">
+              <p className="text-lg tracking-tight text-sara-off-white sm:text-xl">
                 {principle}
               </p>
             </div>
@@ -43,7 +43,7 @@ export default function Mindset({ onGetStarted, onWatchDemo }: MindsetProps) {
         </div>
 
         {/* MISSION STATEMENT */}
-        <p className="text-zinc-500 text-center text-sm sm:text-base leading-relaxed max-w-2xl mb-32">
+        <p className="mb-32 max-w-2xl text-center text-sm leading-relaxed text-sara-light-grey sm:text-base">
           Our mission is to revolutionise utilities through simplicity and
           automation. Just Tradie Mobile is built for tradies who want to focus
           on the job — not the phone.
@@ -52,10 +52,10 @@ export default function Mindset({ onGetStarted, onWatchDemo }: MindsetProps) {
         {/* FINAL CTA SECTION */}
         <div className="text-center space-y-10">
           <div className="space-y-4">
-            <h2 className="text-2xl md:text-4xl font-black tracking-tighter text-white">
+            <h2 className="text-3xl tracking-tight text-sara-off-white md:text-5xl">
               Ready to stop losing jobs?
             </h2>
-            <p className="text-zinc-400 text-lg md:text-xl font-medium">
+            <p className="text-lg text-sara-light-grey md:text-xl">
               Set up in minutes. No contracts. Just more customers.
             </p>
           </div>
@@ -63,7 +63,7 @@ export default function Mindset({ onGetStarted, onWatchDemo }: MindsetProps) {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button 
               onClick={onGetStarted}
-              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-orange-500 hover:bg-orange-400 text-black px-6 py-3 rounded-2xl text-lg font-black transition-all duration-300 shadow-[0_10px_30px_rgba(249,115,22,0.3)] hover:scale-105 active:scale-95"
+              className="flex w-full items-center justify-center gap-3 rounded-sm bg-sara-light-green px-6 py-3 text-sm uppercase tracking-[0.24em] text-sara-dark-green transition-all duration-300 hover:scale-105 hover:bg-[#b7c5a2] active:scale-95 sm:w-auto"
             >
               Get Started Now
               <ArrowRight size={20} />
@@ -71,9 +71,9 @@ export default function Mindset({ onGetStarted, onWatchDemo }: MindsetProps) {
 
             <button 
               onClick={onWatchDemo}
-              className="w-full sm:w-auto flex items-center justify-center gap-3 border-2 border-white/10 hover:border-orange-500/50 text-white hover:text-orange-500 px-6 py-3 rounded-2xl text-lg font-black transition-all duration-300 group"
+              className="group flex w-full items-center justify-center gap-3 rounded-sm border border-sara-light-green/30 px-6 py-3 text-sm uppercase tracking-[0.24em] text-sara-off-white transition-all duration-300 hover:border-sara-light-green hover:text-sara-light-green sm:w-auto"
             >
-              <Mic size={20} className="group-hover:text-orange-500" />
+              <Mic size={20} className="group-hover:text-sara-light-green" />
               Watch Demo First
             </button>
           </div>

@@ -14,8 +14,8 @@ export default function Navbar({ onGetStarted, onWatchDemo, onLogin, isLoggedIn,
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="w-full bg-[#03070b] text-white border-b border-white/5 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <nav className="sticky top-0 z-50 w-full border-b border-sara-light-green/15 bg-sara-black/90 text-sara-off-white backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* LEFT: Logo Section */}
         <div className="flex items-center gap-3">
           <img src={logo} alt="Logo" className="h-16 w-auto" />
@@ -23,14 +23,14 @@ export default function Navbar({ onGetStarted, onWatchDemo, onLogin, isLoggedIn,
 
         {/* RIGHT (Desktop) - Shows only on LG screens (1024px) and above */}
         <div className="hidden lg:flex items-center gap-6">
-          <span className="text-[10px] text-zinc-500 font-bold tracking-[0.15em] uppercase whitespace-nowrap">
+          <span className="whitespace-nowrap text-[10px] uppercase tracking-[0.25em] text-sara-light-grey">
             POWERED BY BELE.AI
           </span>
 
           <div className="flex items-center gap-3">
             <button
               onClick={onWatchDemo}
-              className="flex items-center gap-2 bg-[#f97316] hover:bg-[#ea580c] text-black px-4 py-2 rounded-lg text-sm font-bold transition-all duration-300 shadow-[0_4px_15px_rgba(249,115,22,0.3)] whitespace-nowrap"
+              className="flex items-center gap-2 rounded-sm bg-sara-light-green px-4 py-2 text-xs uppercase tracking-[0.2em] text-sara-dark-green transition-all duration-300 hover:bg-[#b7c5a2] whitespace-nowrap"
             >
               <Mic size={14} className="text-black" />
               Live Demo
@@ -40,7 +40,7 @@ export default function Navbar({ onGetStarted, onWatchDemo, onLogin, isLoggedIn,
               <div className="flex items-center gap-4">
                 <button
                   onClick={onLogout}
-                  className="flex items-center gap-2 border border-red-500/50 hover:bg-red-500 hover:text-white text-red-500 px-4 py-2 rounded-lg text-sm font-bold transition-all shadow-[0_0_15px_rgba(239,68,68,0.1)]"
+                  className="flex items-center gap-2 rounded-sm border border-rose-400/45 px-4 py-2 text-xs uppercase tracking-[0.2em] text-rose-300 transition-all hover:bg-rose-500 hover:text-white"
                 >
                   <LogOut size={16} />
                   Logout
@@ -49,7 +49,7 @@ export default function Navbar({ onGetStarted, onWatchDemo, onLogin, isLoggedIn,
             ) : (
               <button
                 onClick={onLogin}
-                className="border border-orange-500/50 hover:bg-orange-500 hover:text-black text-orange-500 px-5 py-2 rounded-lg text-sm font-bold transition-all"
+                className="rounded-sm border border-sara-light-green/35 px-5 py-2 text-xs uppercase tracking-[0.2em] text-sara-light-green transition-all hover:bg-sara-light-green hover:text-sara-dark-green"
               >
                 Log In
               </button>
@@ -61,7 +61,7 @@ export default function Navbar({ onGetStarted, onWatchDemo, onLogin, isLoggedIn,
         <div className="lg:hidden flex items-center">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 text-zinc-400 hover:text-white transition-colors"
+            className="p-2 text-sara-light-grey transition-colors hover:text-sara-off-white"
             aria-label="Toggle Menu"
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -71,12 +71,12 @@ export default function Navbar({ onGetStarted, onWatchDemo, onLogin, isLoggedIn,
 
       {/* MOBILE MENU - Hidden on LG+ */}
       {isOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-[#03070b] border-t border-white/10 px-6 py-8 flex flex-col gap-6 shadow-2xl animate-in slide-in-from-top-2 duration-300">
+        <div className="absolute left-0 top-full flex w-full animate-in flex-col gap-6 border-t border-sara-light-green/15 bg-sara-dark-grey px-6 py-8 shadow-2xl slide-in-from-top-2 duration-300 lg:hidden">
           <div className="flex flex-col gap-1">
-            <span className="text-[10px] text-zinc-500 font-bold tracking-[0.15em] uppercase">
+            <span className="text-[10px] uppercase tracking-[0.25em] text-sara-light-grey">
               POWERED BY
             </span>
-            <span className="text-xs text-zinc-200 font-black tracking-widest leading-none">
+            <span className="text-xs uppercase tracking-[0.25em] text-sara-off-white leading-none">
               BELE.AI
             </span>
           </div>
@@ -84,7 +84,7 @@ export default function Navbar({ onGetStarted, onWatchDemo, onLogin, isLoggedIn,
           <div className="flex flex-col gap-3">
             <button
               onClick={() => { onWatchDemo(); setIsOpen(false); }}
-              className="flex items-center justify-center gap-2 bg-[#f97316] text-black py-4 rounded-xl text-md font-bold shadow-lg active:scale-95 transition-transform"
+              className="flex items-center justify-center gap-2 rounded-sm bg-sara-light-green py-4 text-sm uppercase tracking-[0.2em] text-sara-dark-green shadow-lg transition-transform active:scale-95"
             >
               <Mic size={18} fill="black" />
               Live Demo
@@ -94,7 +94,7 @@ export default function Navbar({ onGetStarted, onWatchDemo, onLogin, isLoggedIn,
               <div className="flex flex-col gap-3">
                 <button
                   onClick={() => { onLogout && onLogout(); setIsOpen(false); }}
-                  className="flex items-center justify-center gap-2 bg-red-500/10 border border-red-500/20 w-full p-4 rounded-xl text-red-500 font-bold hover:bg-red-500 hover:text-white transition-all"
+                  className="flex w-full items-center justify-center gap-2 rounded-sm border border-rose-400/30 bg-rose-400/10 p-4 text-xs uppercase tracking-[0.2em] text-rose-300 transition-all hover:bg-rose-500 hover:text-white"
                 >
                   <LogOut size={18} />
                   Log Out
@@ -104,14 +104,14 @@ export default function Navbar({ onGetStarted, onWatchDemo, onLogin, isLoggedIn,
               <>
                 <button
                   onClick={() => { onLogin && onLogin(); setIsOpen(false); }}
-                  className="border border-white/10 w-full p-4 rounded-xl text-white font-bold hover:bg-white/5 transition-all"
+                  className="w-full rounded-sm border border-sara-light-green/20 p-4 text-xs uppercase tracking-[0.2em] text-sara-off-white transition-all hover:bg-sara-light-green/10"
                 >
                   Log In
                 </button>
 
                 <button
                   onClick={() => { onGetStarted(); setIsOpen(false); }}
-                  className="bg-[#12181e] border border-white/5 w-full p-4 rounded-xl text-orange-500 font-bold hover:bg-orange-500 hover:text-black transition-all"
+                  className="w-full rounded-sm border border-sara-light-green/15 bg-sara-black p-4 text-xs uppercase tracking-[0.2em] text-sara-light-green transition-all hover:bg-sara-light-green hover:text-sara-dark-green"
                 >
                   Sign Up
                 </button>

@@ -252,28 +252,28 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-[#03070b] text-white flex flex-col font-jakarta z-50">
+    <div className="fixed inset-0 z-50 flex flex-col bg-sara-black text-sara-off-white">
       {/* BACKGROUND GRADIENTS */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-orange-500/10 blur-[120px] rounded-full -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-orange-600/10 blur-[120px] rounded-full translate-x-1/2 translate-y-1/2" />
+        <div className="absolute top-0 left-0 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sara-dark-green/40 blur-[120px]" />
+        <div className="absolute bottom-0 right-0 h-[500px] w-[500px] translate-x-1/2 translate-y-1/2 rounded-full bg-sara-light-green/20 blur-[120px]" />
       </div>
 
       {/* NAVBAR */}
-      <nav className="w-full h-16 border-b border-white/5 flex items-center justify-between px-6 bg-[#03070b]/80 backdrop-blur-md sticky top-0 z-50">
+      <nav className="sticky top-0 z-50 flex h-16 w-full items-center justify-between border-b border-sara-light-green/15 bg-sara-black/80 px-6 backdrop-blur-md">
         <div className="flex items-center gap-4">
           <button
             onClick={onBack}
-            className="text-zinc-500 hover:text-white transition-all p-2 hover:bg-white/5 rounded-full"
+            className="rounded-full p-2 text-sara-light-grey transition-all hover:bg-sara-off-white/5 hover:text-sara-off-white"
           >
             <ArrowLeft size={20} />
           </button>
           <div className="flex items-center gap-1">
-            <span className="text-orange-500 font-bold">~</span>
-            <span className="text-white font-black tracking-tighter uppercase text-sm">
+            <span className="font-bold text-sara-light-green">~</span>
+            <span className="text-sm uppercase tracking-[0.2em] text-sara-off-white">
               VOICE
             </span>
-            <span className="text-orange-500 font-black tracking-tighter uppercase text-sm">
+            <span className="text-sm uppercase tracking-[0.2em] text-sara-light-green">
               AGENT
             </span>
           </div>
@@ -282,13 +282,13 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
 
       {/* MAIN CONTENT */}
       <main className="flex-1 flex flex-col items-center justify-center p-6 relative overflow-y-auto">
-        <div className="w-full max-w-lg bg-[#090e14]/40 backdrop-blur-2xl border border-white/10 rounded-[40px] p-8 md:p-12 shadow-2xl space-y-10 text-center">
+        <div className="w-full max-w-lg space-y-10 rounded-[40px] border border-sara-light-green/15 bg-sara-dark-grey/70 p-8 text-center shadow-sara-soft backdrop-blur-2xl md:p-12">
 
           <div className="space-y-4">
-            <h1 className="text-3xl md:text-4xl font-black tracking-tight bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+            <h1 className="bg-gradient-to-r from-sara-off-white to-sara-light-green bg-clip-text text-4xl tracking-tight text-transparent md:text-5xl">
               AI Voice Assistant
             </h1>
-            <p className="text-zinc-500 text-sm font-medium uppercase tracking-widest">
+            <p className="text-sm uppercase tracking-[0.25em] text-sara-light-grey">
               Real-time Service Booking Representative
             </p>
           </div>
@@ -296,34 +296,34 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
           <div className="flex flex-col items-center space-y-8">
             {/* STATUS BADGE */}
             <div className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${isSessionActive
-              ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]'
-              : 'bg-orange-500/10 text-orange-400 border border-orange-500/20'
+              ? 'border border-sara-light-green/25 bg-sara-light-green/10 text-sara-light-green shadow-[0_0_15px_rgba(163,177,138,0.12)]'
+              : 'border border-sara-off-white/12 bg-sara-off-white/5 text-sara-off-white'
               }`}>
               {status}
             </div>
 
             {/* THE ORB */}
             <div className="relative group">
-              <div className={`w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center transition-all duration-700 relative z-10 ${orbState === 'listening' ? 'bg-emerald-500 scale-105 shadow-[0_0_50px_rgba(16,185,129,0.4)]' :
-                orbState === 'speaking' ? 'bg-orange-500 scale-110 shadow-[0_0_60px_rgba(249,115,22,0.5)]' :
-                  'bg-zinc-800 scale-100 shadow-xl border border-white/5'
+              <div className={`relative z-10 flex h-32 w-32 items-center justify-center rounded-full transition-all duration-700 md:h-40 md:w-40 ${orbState === 'listening' ? 'scale-105 bg-sara-light-green text-sara-dark-green shadow-[0_0_50px_rgba(163,177,138,0.35)]' :
+                orbState === 'speaking' ? 'scale-110 bg-sara-dark-green text-sara-off-white shadow-[0_0_60px_rgba(0,73,58,0.45)]' :
+                  'scale-100 border border-sara-light-green/12 bg-sara-dark-grey shadow-xl'
                 }`}>
-                <Mic size={40} className={`text-white transition-opacity duration-300 ${isSessionActive ? 'opacity-100' : 'opacity-40'}`} />
+                <Mic size={40} className={`transition-opacity duration-300 ${isSessionActive ? 'opacity-100' : 'opacity-40'}`} />
 
                 {/* PULSE RINGS */}
                 {isSessionActive && (
                   <>
-                    <div className={`absolute inset-0 rounded-full border-2 animate-ping opacity-20 ${orbState === 'speaking' ? 'border-orange-400' : 'border-emerald-400'
+                    <div className={`absolute inset-0 rounded-full border-2 animate-ping opacity-20 ${orbState === 'speaking' ? 'border-sara-off-white' : 'border-sara-light-green'
                       }`} />
-                    <div className={`absolute -inset-4 rounded-full border border-white/5 ${orbState === 'speaking' ? 'animate-pulse' : ''
+                    <div className={`absolute -inset-4 rounded-full border border-sara-light-green/15 ${orbState === 'speaking' ? 'animate-pulse' : ''
                       }`} />
                   </>
                 )}
               </div>
 
               {/* ORB GLOW EFFECT */}
-              <div className={`absolute inset-0 blur-3xl opacity-20 -z-10 transition-all duration-700 ${orbState === 'listening' ? 'bg-emerald-500 scale-150' :
-                orbState === 'speaking' ? 'bg-orange-500 scale-150' :
+              <div className={`absolute inset-0 -z-10 opacity-20 blur-3xl transition-all duration-700 ${orbState === 'listening' ? 'scale-150 bg-sara-light-green' :
+                orbState === 'speaking' ? 'scale-150 bg-sara-dark-green' :
                   'bg-transparent'
                 }`} />
             </div>
@@ -333,14 +333,14 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
               {!isSessionActive ? (
                 <button
                   onClick={handleStartSession}
-                  className="w-full bg-orange-600 hover:bg-orange-500 text-black px-8 py-4 rounded-2xl text-sm font-black transition-all shadow-[0_10px_30px_rgba(249,115,22,0.3)] hover:translate-y--0.5 active:scale-95 uppercase tracking-widest"
+                  className="w-full rounded-md bg-sara-light-green px-8 py-4 text-sm uppercase tracking-[0.25em] text-sara-dark-green transition-all hover:bg-[#b7c5a2] active:scale-95"
                 >
                   START CONVERSATION
                 </button>
               ) : (
                 <button
                   onClick={handleEndSession}
-                  className="w-full bg-rose-600/10 hover:bg-rose-600 border border-rose-500/30 text-rose-500 hover:text-white px-8 py-4 rounded-2xl text-sm font-black transition-all flex items-center justify-center gap-3 uppercase tracking-widest"
+                  className="flex w-full items-center justify-center gap-3 rounded-md border border-rose-400/30 bg-rose-400/10 px-8 py-4 text-sm uppercase tracking-[0.25em] text-rose-300 transition-all hover:bg-rose-500 hover:text-white"
                 >
                   <PhoneOff size={18} />
                   END CALL
@@ -351,11 +351,11 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
 
           {/* TRANSCRIPTS */}
           {(userTranscript || agentTranscript) && (
-            <div className="space-y-4 pt-10 border-t border-white/5 text-left">
+            <div className="space-y-4 border-t border-sara-light-green/15 pt-10 text-left">
               {agentTranscript && (
                 <div className="space-y-2">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-orange-400/60 ml-2">Agent</span>
-                  <div className="bg-orange-500/5 border-l-2 border-orange-500 p-4 rounded-r-2xl text-sm text-zinc-300 leading-relaxed italic">
+                  <span className="ml-2 text-[10px] uppercase tracking-[0.25em] text-sara-light-green/70">Agent</span>
+                  <div className="rounded-r-2xl border-l-2 border-sara-light-green bg-sara-light-green/10 p-4 text-sm leading-relaxed text-sara-off-white italic">
                     {agentTranscript}
                   </div>
                 </div>
@@ -363,8 +363,8 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
 
               {userTranscript && (
                 <div className="space-y-2">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400/60 ml-2">You</span>
-                  <div className="bg-zinc-800/40 p-4 rounded-2xl text-sm text-zinc-400 leading-relaxed">
+                  <span className="ml-2 text-[10px] uppercase tracking-[0.25em] text-sara-light-grey/70">You</span>
+                  <div className="rounded-2xl bg-sara-black/35 p-4 text-sm leading-relaxed text-sara-light-grey">
                     {userTranscript}
                   </div>
                 </div>
@@ -377,14 +377,14 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
       </main>
 
       {/* FOOTER STATUS */}
-      <footer className="w-full h-10 bg-black/50 border-t border-white/5 px-6 flex items-center justify-between font-mono text-[9px] font-black tracking-[0.2em] text-zinc-700">
+      <footer className="flex h-10 w-full items-center justify-between border-t border-sara-light-green/15 bg-sara-black/60 px-6 font-mono text-[9px] uppercase tracking-[0.2em] text-sara-mid-grey">
         <div className="flex items-center gap-2">
-          <div className={`w-1 h-1 rounded-full ${isSessionActive ? 'bg-emerald-500 animate-pulse' : 'bg-zinc-600'}`} />
+          <div className={`h-1 w-1 rounded-full ${isSessionActive ? 'bg-sara-light-green animate-pulse' : 'bg-sara-mid-grey'}`} />
           {isSessionActive ? 'SESSION_ENCRYPTED_ACTIVE' : 'READY_TO_CONNECT'}
         </div>
         <div className="flex items-center gap-6">
           <span className="opacity-40">TRADIE_MOB_OS v1.0.4</span>
-          <span className="text-orange-500/30">BELE.AI_CORE</span>
+          <span className="text-sara-light-green/40">BELE.AI_CORE</span>
         </div>
       </footer>
     </div>

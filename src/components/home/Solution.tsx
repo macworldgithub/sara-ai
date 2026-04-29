@@ -43,44 +43,44 @@ export default function Solution() {
   ];
 
   return (
-    <section className="bg-[#03070b] py-24 px-6 sm:px-12 lg:px-24">
-      <div className="max-w-7xl mx-auto flex flex-col xl:flex-row items-center gap-16 lg:gap-24">
+    <section className="bg-sara-black px-6 py-24 text-sara-off-white sm:px-12 lg:px-24">
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-16 lg:gap-24 xl:flex-row">
         {/* LEFT COLUMN: Illustration/Image */}
         <div className="w-full xl:w-1/2 relative group">
-          <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border border-white/5 h-[350px] sm:min-h-[450px] lg:min-h-[550px]">
+          <div className="relative h-[350px] overflow-hidden rounded-[2rem] border border-sara-light-green/10 shadow-sara-soft sm:min-h-[450px] lg:min-h-[550px]">
             <img
               src={solutionIllustration}
               alt="Bele.Ai Solution Illustration"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             />
             {/* Dark Overlay for bottom text stability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-sara-black/80 via-transparent to-transparent" />
 
             {/* Illustration Label Overlay */}
             <div className="absolute bottom-6 left-8 sm:bottom-12 sm:left-12">
-              <div className="inline-block text-[8px] sm:text-[10px] font-black tracking-widest text-[#f97316] uppercase bg-black/50 backdrop-blur-md px-5 py-3 rounded-md border border-[#f97316]/20">
+              <div className="inline-block rounded-sm border border-sara-light-green/25 bg-sara-dark-green/80 px-5 py-3 text-[8px] uppercase tracking-[0.25em] text-sara-off-white backdrop-blur-md sm:text-[10px]">
                 AI answers. You get the job.
               </div>
             </div>
           </div>
 
           {/* Subtle glow behind image */}
-          <div className="absolute -inset-10 bg-orange-500/5 blur-[120px] -z-10 rounded-full opacity-50" />
+          <div className="absolute -inset-10 -z-10 rounded-full bg-sara-light-green/15 opacity-50 blur-[120px]" />
         </div>
 
         {/* RIGHT COLUMN: Text Content & Features */}
         <div className="w-full xl:w-1/2 space-y-10">
           <div className="space-y-4">
-            <span className="text-[10px] sm:text-[11px] font-black tracking-[0.2em] text-[#f97316] uppercase">
+            <span className="text-[10px] uppercase tracking-[0.28em] text-sara-light-grey sm:text-[11px]">
               The Solution
             </span>
-            <h2 className="text-3xl md:text-5xl font-black leading-[1.1] tracking-tighter text-white">
+            <h2 className="text-4xl leading-[1.05] tracking-tight text-sara-off-white md:text-6xl">
               Bele.Ai answers <br />
-              <span className="text-[#f97316]">so you don't have to.</span>
+              <span className="italic text-sara-light-green">so you don't have to.</span>
             </h2>
           </div>
 
-          <p className="text-zinc-400 text-base md:text-md font-medium leading-relaxed max-w-3xl">
+          <p className="max-w-3xl text-base leading-relaxed text-sara-light-grey md:text-base">
             When a customer calls and you can't answer, Bele.Ai picks up after 3
             rings. It greets the caller professionally, qualifies the job,
             captures all their details, and sends you an SMS instantly.
@@ -91,16 +91,16 @@ export default function Solution() {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-[#090e14]/50 border border-white/5 p-5 rounded-xl flex items-start gap-4 transition-all hover:border-[#f97316]/30 hover:bg-[#0c121a] group"
+                className="group flex items-start gap-4 rounded-xl border border-sara-light-green/10 bg-sara-dark-grey/70 p-5 transition-all hover:border-sara-light-green/30 hover:bg-sara-dark-grey"
               >
-                <div className="bg-[#f97316]/10 p-2.5 rounded-lg text-[#f97316] group-hover:scale-110 transition-transform">
+                <div className="rounded-lg bg-sara-light-green/10 p-2.5 text-sara-light-green transition-transform group-hover:scale-110">
                   {feature.icon}
                 </div>
                 <div className="space-y-1">
-                  <h4 className="text-white font-bold text-sm sm:text-base leading-tight">
+                  <h4 className="text-sm leading-tight text-sara-off-white sm:text-base">
                     {feature.title}
                   </h4>
-                  <p className="text-zinc-500 text-[11px] sm:text-xs tracking-wide">
+                  <p className="text-[11px] tracking-wide text-sara-light-grey sm:text-xs">
                     {feature.description}
                   </p>
                 </div>

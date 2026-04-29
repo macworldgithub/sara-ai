@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import {
   ArrowLeft,
   User,
@@ -38,8 +38,10 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
     secondarySMS: "",
     portMobile: false,
   });
-
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [otp, setOtp] = useState("");
 
   const steps = [
     { id: 1, label: "Your Details", icon: <User size={16} /> },
@@ -60,10 +62,6 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
     "Roofer",
     "General Tradesperson",
   ];
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [otp, setOtp] = useState("");
 
   const nextStep = () => setStep((prev) => Math.min(prev + 1, 7));
   const prevStep = () => {
@@ -87,16 +85,13 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
         geoNumberType: "NONE",
         portingNumber: formData.geoNumber,
         openingHours: `${formData.openingTime}-${formData.closingTime} MON-FRI`,
-        paymentDetails: {}
+        paymentDetails: {},
       };
 
       const res = await authService.register(payload);
-      if (res.userId) {
-        setStep(6);
-      } else {
-        setError(res.message || "Failed to register");
-      }
-    } catch (err) {
+      if (res.userId) setStep(6);
+      else setError(res.message || "Failed to register");
+    } catch {
       setError("An error occurred during signup");
     } finally {
       setIsSubmitting(false);
@@ -108,12 +103,9 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
     setError(null);
     try {
       const res = await authService.verifyOtp(formData.email, otp);
-      if (res.message === "Email verified successfully") {
-        setStep(7);
-      } else {
-        setError(res.message || "Invalid OTP");
-      }
-    } catch (err) {
+      if (res.message === "Email verified successfully") setStep(7);
+      else setError(res.message || "Invalid OTP");
+    } catch {
       setError("An error occurred during verification");
     } finally {
       setIsSubmitting(false);
@@ -125,354 +117,205 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#03070b] text-white flex flex-col items-center">
-      {/* HEADER BAR */}
-      <header className="w-full px-6 py-6 border-b border-white/5 flex items-center justify-between">
+    <div className="min-h-screen bg-sara-black text-sara-off-white">
+      <header className="flex w-full items-center justify-between border-b border-sara-light-green/15 px-6 py-6">
         <div className="flex items-center gap-4">
           <button
             onClick={prevStep}
-            className="text-zinc-500 hover:text-white transition-colors flex items-center gap-2 group"
+            className="group flex items-center gap-2 text-sara-light-grey transition-colors hover:text-sara-off-white"
           >
             <ArrowLeft
               size={18}
-              className="group-hover:-translate-x-1 transition-transform"
+              className="transition-transform group-hover:-translate-x-1"
             />
           </button>
-
-          <div className="flex items-center gap-2">
-            <img src={logo} alt="Logo" className="h-16 w-auto" />
-          </div>
+          <img src={logo} alt="Logo" className="h-16 w-auto" />
         </div>
 
-        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-700">
-          Step {step}/5
+        <span className="text-[10px] uppercase tracking-[0.3em] text-sara-mid-grey">
+          Step {Math.min(step, 5)}/5
         </span>
       </header>
 
-      {/* STEPPER NAVIGATION */}
-      <div className="w-full max-w-4xl mt-12 mb-16 overflow-x-auto no-scrollbar px-6">
-        <div className="flex items-center justify-between min-w-[500px] relative">
+      <div className="mx-auto w-full max-w-4xl overflow-x-auto px-6 pb-4 pt-12 no-scrollbar">
+        <div className="relative flex min-w-[500px] items-center justify-between">
           {steps.map((s) => (
             <div
               key={s.id}
-              className={`flex items-center gap-2 pb-4 border-b-2 transition-all cursor-pointer z-10 ${step === s.id
-                ? "border-orange-500 text-orange-500"
-                : step > s.id
-                  ? "border-emerald-500 text-emerald-500"
-                  : "border-transparent text-zinc-600"
-                }`}
+              className={`z-10 flex cursor-pointer items-center gap-2 border-b-2 pb-4 transition-all ${
+                step === s.id
+                  ? "border-sara-light-green text-sara-light-green"
+                  : step > s.id
+                    ? "border-sara-off-white text-sara-off-white"
+                    : "border-transparent text-sara-mid-grey"
+              }`}
             >
               {step > s.id ? <Check size={16} /> : s.icon}
-              <span className="text-xs font-black uppercase tracking-widest whitespace-nowrap">
+              <span className="whitespace-nowrap text-xs uppercase tracking-[0.2em]">
                 {s.label}
               </span>
             </div>
           ))}
-          {/* BACKGROUND LINE */}
-          <div className="absolute bottom-4 left-0 w-full h-[2px] bg-white/5 -z-10" />
+          <div className="absolute bottom-4 left-0 h-[2px] w-full bg-sara-light-green/10 -z-10" />
         </div>
       </div>
 
-      {/* FORM CONTAINER */}
-      <main className="w-full max-w-2xl px-6 pb-20 animate-in fade-in slide-in-from-bottom-8 duration-700">
-        {/* STEP 1: YOUR DETAILS */}
+      <main className="mx-auto w-full max-w-2xl px-6 pb-20 animate-in fade-in slide-in-from-bottom-8 duration-700">
         {step === 1 && (
-          <div className="space-y-10">
-            <div className="space-y-2">
-              <h2 className="text-4xl font-black tracking-tighter">
-                Your Details
-              </h2>
-              <p className="text-zinc-500 font-medium tracking-wide">
-                Tell us about yourself and your business.
-              </p>
+          <Section title="Your Details" copy="Tell us about yourself and your business.">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-2">
+              <InputField label="Your Name" value={formData.name} icon={<User size={14} />} placeholder="Jon Smith" onChange={(v: string) => handleInputChange("name", v)} />
+              <InputField label="Company Name" value={formData.company} icon={<Briefcase size={14} />} placeholder="Jon's Plumbing" onChange={(v: string) => handleInputChange("company", v)} />
+              <InputField label="ACN (optional)" value={formData.acn} icon={<FileText size={14} />} placeholder="123 456 789" highlight onChange={(v: string) => handleInputChange("acn", v)} />
+              <InputField label="Email" value={formData.email} icon={<Mail size={14} />} placeholder="jon@plumbing.com.au" onChange={(v: string) => handleInputChange("email", v)} />
+              <InputField label="Password" type="password" value={formData.password} icon={<FileText size={14} />} placeholder="••••••••" onChange={(v: string) => handleInputChange("password", v)} />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
-              <InputField
-                label="Your Name"
-                value={formData.name}
-                icon={<User size={14} />}
-                placeholder="Jon Smith"
-                onChange={(v: string) => handleInputChange("name", v)}
-              />
-              <InputField
-                label="Company Name"
-                value={formData.company}
-                icon={<Briefcase size={14} />}
-                placeholder="Jon's Plumbing"
-                onChange={(v: string) => handleInputChange("company", v)}
-              />
-              <InputField
-                label="ACN (optional)"
-                value={formData.acn}
-                icon={<FileText size={14} />}
-                placeholder="123 456 789"
-                highlight
-                onChange={(v: string) => handleInputChange("acn", v)}
-              />
-              <InputField
-                label="Email"
-                value={formData.email}
-                icon={<Mail size={14} />}
-                placeholder="jon@plumbing.com.au"
-                onChange={(v: string) => handleInputChange("email", v)}
-              />
-              <InputField
-                label="Password"
-                type="password"
-                value={formData.password}
-                icon={<FileText size={14} />}
-                placeholder="••••••••"
-                onChange={(v: string) => handleInputChange("password", v)}
-              />
-            </div>
-          </div>
+          </Section>
         )}
 
-        {/* STEP 2: YOUR TRADE */}
         {step === 2 && (
-          <div className="space-y-10 text-center sm:text-left">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-black tracking-tighter">
-                What Trade Are You?
-              </h2>
-              <p className="text-zinc-500 font-medium tracking-wide">
-                This helps Bele.Ai qualify callers and check they need the right
-                trade.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <Section title="What Trade Are You?" copy="This helps Bele.Ai qualify callers and check they need the right trade.">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {trades.map((t) => (
                 <button
                   key={t}
                   onClick={() => setFormData({ ...formData, trade: t })}
-                  className={`flex items-center justify-between p-5 rounded-2xl border-2 transition-all group ${formData.trade === t
-                    ? "border-orange-500 bg-orange-500/5 text-orange-500"
-                    : "border-white/5 bg-[#090e14] text-zinc-500 hover:border-white/10"
-                    }`}
+                  className={`group flex items-center justify-between rounded-2xl border-2 p-5 transition-all ${
+                    formData.trade === t
+                      ? "border-sara-light-green bg-sara-light-green/10 text-sara-light-green"
+                      : "border-sara-light-green/12 bg-sara-dark-grey text-sara-light-grey hover:border-sara-light-green/28"
+                  }`}
                 >
                   <div className="flex items-center gap-4">
                     <Hammer
                       size={18}
                       className={
                         formData.trade === t
-                          ? "text-orange-500"
-                          : "text-zinc-700 group-hover:text-zinc-400"
+                          ? "text-sara-light-green"
+                          : "text-sara-mid-grey transition-colors group-hover:text-sara-light-grey"
                       }
                     />
-                    <span className="font-bold tracking-tight">{t}</span>
+                    <span>{t}</span>
                   </div>
                   {formData.trade === t && <Check size={16} />}
                 </button>
               ))}
             </div>
-          </div>
+          </Section>
         )}
 
-        {/* STEP 3: NUMBER SETUP */}
         {step === 3 && (
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-black tracking-tighter">
-                Number Setup
-              </h2>
-              <p className="text-zinc-500 font-medium tracking-wide">
-                Your mobile number and optional geographic (landline) number.
-              </p>
-            </div>
+          <Section title="Number Setup" copy="Your mobile number and optional geographic (landline) number.">
             <div className="space-y-4">
-              <InputField
-                label="Mobile Number"
-                value={formData.mobile}
-                icon={<Phone size={14} />}
-                placeholder="0412 345 678"
-                onChange={(v: string) => handleInputChange("mobile", v)}
-              />
+              <InputField label="Mobile Number" value={formData.mobile} icon={<Phone size={14} />} placeholder="0412 345 678" onChange={(v: string) => handleInputChange("mobile", v)} />
 
-              <div
-                onClick={() =>
-                  setFormData({ ...formData, portMobile: !formData.portMobile })
-                }
-              >
-                <CheckboxField
-                  checked={formData.portMobile}
-                  label="Port this mobile number?"
-                  sub="CAT-A port typically takes 24-48 hours"
-                />
+              <div onClick={() => setFormData({ ...formData, portMobile: !formData.portMobile })}>
+                <CheckboxField checked={formData.portMobile} label="Port this mobile number?" sub="CAT-A port typically takes 24-48 hours" />
               </div>
 
-              <div className="border-t border-white/5" />
+              <div className="border-t border-sara-light-green/10" />
 
-              <div
-                onClick={() =>
-                  setFormData({ ...formData, wantGeo: !formData.wantGeo })
-                }
-              >
-                <CheckboxField
-                  checked={formData.wantGeo}
-                  label="Do you want a Geo (landline) number?"
-                  sub="e.g. 02 XXXX XXXX for a local presence"
-                />
+              <div onClick={() => setFormData({ ...formData, wantGeo: !formData.wantGeo })}>
+                <CheckboxField checked={formData.wantGeo} label="Do you want a Geo (landline) number?" sub="e.g. 02 XXXX XXXX for a local presence" />
               </div>
 
               {formData.wantGeo && (
-                <div className="pl-4 space-y-4 border-l-2 border-orange-500/20 animate-in slide-in-from-left-4 pt-1">
-                  <div
-                    onClick={() =>
-                      setFormData({ ...formData, portGeo: !formData.portGeo })
-                    }
-                  >
-                    <CheckboxField
-                      checked={formData.portGeo}
-                      label="Port an existing Geo number"
-                    />
+                <div className="animate-in space-y-4 border-l-2 border-sara-light-green/20 pl-4 pt-1 slide-in-from-left-4">
+                  <div onClick={() => setFormData({ ...formData, portGeo: !formData.portGeo })}>
+                    <CheckboxField checked={formData.portGeo} label="Port an existing Geo number" />
                   </div>
-                  <InputField
-                    label="Existing Geo Number"
-                    value={formData.geoNumber}
-                    icon={<Plus size={14} />}
-                    placeholder="02 XXXX XXXX"
-                    onChange={(v: string) => handleInputChange("geoNumber", v)}
-                  />
+                  <InputField label="Existing Geo Number" value={formData.geoNumber} icon={<Plus size={14} />} placeholder="02 XXXX XXXX" onChange={(v: string) => handleInputChange("geoNumber", v)} />
                 </div>
               )}
             </div>
-          </div>
+          </Section>
         )}
 
-        {/* STEP 4: HOURS & DELIVERY */}
         {step === 4 && (
-          <div className="space-y-10">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-black tracking-tighter">
-                Working Hours & Delivery
-              </h2>
-              <p className="text-zinc-500 font-medium tracking-wide">
-                Set your business hours so Bele.Ai can greet callers differently
-                after hours.
-              </p>
+          <Section title="Working Hours & Delivery" copy="Set your business hours so Bele.Ai can greet callers differently after hours.">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+              <InputField label="Opening Time" value={formData.openingTime} icon={<Clock size={14} />} placeholder="07:00 AM" onChange={(v: string) => handleInputChange("openingTime", v)} />
+              <InputField label="Closing Time" value={formData.closingTime} icon={<Clock size={14} />} placeholder="06:00 PM" onChange={(v: string) => handleInputChange("closingTime", v)} />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="mt-8">
               <InputField
-                label="Opening Time"
-                value={formData.openingTime}
-                icon={<Clock size={14} />}
-                placeholder="07:00 AM"
-                onChange={(v: string) => handleInputChange("openingTime", v)}
-              />
-              <InputField
-                label="Closing Time"
-                value={formData.closingTime}
-                icon={<Clock size={14} />}
-                placeholder="06:00 PM"
-                onChange={(v: string) => handleInputChange("closingTime", v)}
+                label="Secondary SMS Delivery (optional)"
+                value={formData.secondarySMS}
+                icon={<MessageSquare size={14} />}
+                placeholder="111XXXXXXXX"
+                subLabel="A copy of each lead SMS will also be sent to this number."
+                highlight
+                onChange={(v: string) => handleInputChange("secondarySMS", v)}
               />
             </div>
 
-            <InputField
-              label="Secondary SMS Delivery (optional)"
-              value={formData.secondarySMS}
-              icon={<MessageSquare size={14} />}
-              placeholder="111XXXXXXXX"
-              subLabel="A copy of each lead SMS will also be sent to this number (e.g. partner fielding calls)."
-              highlight
-              onChange={(v: string) => handleInputChange("secondarySMS", v)}
-            />
-
-            <div className="p-6 bg-[#090e14] border border-orange-500/20 rounded-2xl space-y-4">
-              <div className="flex items-center gap-2 text-orange-500">
+            <div className="mt-8 space-y-4 rounded-2xl border border-sara-light-green/20 bg-sara-dark-grey p-6">
+              <div className="flex items-center gap-2 text-sara-light-green">
                 <Briefcase size={16} />
-                <span className="text-xs font-black uppercase tracking-widest">
-                  Payment
-                </span>
+                <span className="text-xs uppercase tracking-[0.2em]">Payment</span>
               </div>
-              <p className="text-zinc-500 text-sm font-medium">
-                Payment details would be collected here. Upfront payment
-                required before activation.
+              <p className="text-sm text-sara-light-grey">
+                Payment details would be collected here. Upfront payment required
+                before activation.
               </p>
-              <p className="text-[#ff3b3b] text-[10px] font-black uppercase tracking-widest">
-                (Demo only — no payment processing)
+              <p className="text-[10px] uppercase tracking-[0.25em] text-rose-300">
+                (Demo only - no payment processing)
               </p>
             </div>
-          </div>
+          </Section>
         )}
 
-        {/* STEP 5: CONFIRMATION */}
         {step === 5 && (
-          <div className="space-y-10">
-            <div className="space-y-2">
-              <h2 className="text-4xl font-black tracking-tighter">
-                Confirm & Sign Up
-              </h2>
-              <p className="text-zinc-500 font-medium tracking-wide">
-                Review your details and accept the terms.
-              </p>
-            </div>
-
-            <div className="bg-[#090e14] border border-white/5 p-10 rounded-3xl space-y-2">
-              <div className="flex items-center gap-2 text-zinc-600 mb-2 justify-center">
-                <span className="text-[10px] font-black uppercase tracking-[0.2em]">
+          <Section title="Confirm & Sign Up" copy="Review your details and accept the terms.">
+            <div className="space-y-10">
+              <div className="space-y-4 rounded-3xl border border-sara-light-green/12 bg-sara-dark-grey p-10">
+                <div className="flex justify-center text-[10px] uppercase tracking-[0.25em] text-sara-mid-grey">
                   Your Details
-                </span>
-              </div>
-              <div className="space-y-4">
+                </div>
                 <SummaryItem label="Name" value={formData.name || "—"} />
                 <SummaryItem label="Company" value={formData.company || "—"} />
                 <SummaryItem label="Email" value={formData.email || "—"} />
                 <SummaryItem label="Trade" value={formData.trade || "—"} />
-                <SummaryItem
-                  label="Mobile"
-                  value={`${formData.mobile || "—"} ${formData.portMobile ? "(porting)" : ""}`}
-                />
-                <SummaryItem
-                  label="Hours"
-                  value={`${formData.openingTime} — ${formData.closingTime}`}
-                />
+                <SummaryItem label="Mobile" value={`${formData.mobile || "—"} ${formData.portMobile ? "(porting)" : ""}`} />
+                <SummaryItem label="Hours" value={`${formData.openingTime} — ${formData.closingTime}`} />
               </div>
-            </div>
 
-            <div
-              onClick={() => setAgreedToTerms(!agreedToTerms)}
-              className={`bg-[#090e14] border p-4 rounded-2xl flex items-start gap-4 transition-all group cursor-pointer ${agreedToTerms
-                ? "border-orange-500/50 bg-orange-500/5 shadow-[0_0_20px_rgba(16,185,129,0.1)]"
-                : "border-white/5 hover:border-white/10"
-                }`}
-            >
               <div
-                className={`w-6 h-6 rounded-md border-2 flex items-center justify-center shrink-0 transition-all ${agreedToTerms
-                  ? "bg-orange-500 border-orange-500"
-                  : "border-white/20 group-hover:border-white/40"
-                  }`}
+                onClick={() => setAgreedToTerms(!agreedToTerms)}
+                className={`group flex cursor-pointer items-start gap-4 rounded-2xl border p-4 transition-all ${
+                  agreedToTerms
+                    ? "border-sara-light-green/50 bg-sara-light-green/10 shadow-[0_0_20px_rgba(163,177,138,0.1)]"
+                    : "border-sara-light-green/12 bg-sara-dark-grey hover:border-sara-light-green/24"
+                }`}
               >
-                {agreedToTerms && (
-                  <Check size={16} className="text-black stroke-[4]" />
-                )}
-              </div>
-              <div className="space-y-2">
-                <p className="text-white font-bold text-sm">
-                  I agree to the Terms and Conditions
-                </p>
-                <p className="text-zinc-500 text-[10px] leading-relaxed">
-                  Including payment terms, porting authorisation (if
-                  applicable), and Bele.Ai service agreement.
-                </p>
+                <div
+                  className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md border-2 transition-all ${
+                    agreedToTerms
+                      ? "border-sara-light-green bg-sara-light-green"
+                      : "border-sara-light-grey/20 group-hover:border-sara-light-grey/40"
+                  }`}
+                >
+                  {agreedToTerms && (
+                    <Check size={16} className="stroke-[4] text-sara-dark-green" />
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <p className="text-sm text-sara-off-white">
+                    I agree to the Terms and Conditions
+                  </p>
+                  <p className="text-[10px] leading-relaxed text-sara-light-grey">
+                    Including payment terms, porting authorisation, and Bele.Ai
+                    service agreement.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          </Section>
         )}
 
-        {/* STEP 6: VERIFY OTP */}
         {step === 6 && (
-          <div className="space-y-10">
-            <div className="space-y-2 text-center">
-              <h2 className="text-4xl font-black tracking-tighter">
-                Verify Your Email
-              </h2>
-              <p className="text-zinc-500 font-medium tracking-wide">
-                We've sent a 6-digit code to <span className="text-white">{formData.email}</span>
-              </p>
-            </div>
-
+          <Section title="Verify Your Email" copy={`We've sent a 6-digit code to ${formData.email}`}>
             <div className="flex flex-col items-center space-y-6">
               <input
                 type="text"
@@ -480,104 +323,73 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
                 value={otp}
                 onChange={(e) => setOtp(e.target.value)}
                 placeholder="000000"
-                className="w-full max-w-xs bg-[#12181e] border border-white/5 rounded-2xl px-6 py-5 text-center text-4xl font-black tracking-[0.5em] text-orange-500 placeholder-zinc-800 focus:outline-none focus:border-orange-500 transition-all"
+                className="w-full max-w-xs rounded-2xl border border-sara-light-green/12 bg-sara-dark-grey px-6 py-5 text-center font-mono text-4xl tracking-[0.5em] text-sara-light-green placeholder-sara-mid-grey transition-all focus:outline-none focus:border-sara-light-green"
               />
 
-              {error && (
-                <p className="text-red-500 text-sm font-bold animate-in fade-in slide-in-from-top-2">
-                  {error}
-                </p>
-              )}
+              {error && <p className="text-sm text-rose-300">{error}</p>}
 
               <button
                 onClick={handleVerifyOtp}
                 disabled={otp.length !== 6 || isSubmitting}
-                className="w-full max-w-xs flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-400 text-black px-10 py-4 rounded-xl text-lg font-black transition-all shadow-xl shadow-orange-500/10 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full max-w-xs rounded-md bg-sara-light-green px-10 py-4 text-sm uppercase tracking-[0.25em] text-sara-dark-green transition-all hover:bg-[#b7c5a2] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isSubmitting ? "Verifying..." : "Verify OTP"}
               </button>
             </div>
-          </div>
+          </Section>
         )}
 
-        {/* STEP 7: SUCCESS */}
         {step === 7 && (
-          <div className="flex flex-col items-center justify-center text-center py-10 space-y-10 animate-in fade-in zoom-in-95 duration-1000">
-            {/* SUCCESS ICON */}
-            <div className="relative">
-              <div className="w-24 h-24 rounded-full border-2 border-emerald-500 flex items-center justify-center shadow-[0_0_50px_rgba(16,185,129,0.2)]">
-                <Check size={48} className="text-emerald-500" />
+          <div className="animate-in space-y-10 py-10 text-center fade-in zoom-in-95 duration-1000">
+            <div className="relative flex justify-center">
+              <div className="flex h-24 w-24 items-center justify-center rounded-full border-2 border-sara-light-green shadow-[0_0_50px_rgba(163,177,138,0.2)]">
+                <Check size={48} className="text-sara-light-green" />
               </div>
-              <div className="absolute -inset-4 bg-emerald-500/10 blur-2xl rounded-full -z-10" />
+              <div className="absolute -inset-4 -z-10 rounded-full bg-sara-light-green/10 blur-2xl" />
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-4xl sm:text-5xl font-black tracking-tighter">
+              <h2 className="text-5xl tracking-tight sm:text-6xl">
                 You're All Set!
               </h2>
-              <p className="text-zinc-500 text-sm sm:text-base max-w-md leading-relaxed font-medium">
+              <p className="mx-auto max-w-md text-sm leading-relaxed text-sara-light-grey sm:text-base">
                 In a real sign-up, you'd receive a confirmation email at <br />
-                <span className="text-white font-bold tracking-tight">
-                  {formData.email}
-                </span>{" "}
+                <span className="text-sara-off-white">{formData.email}</span>
                 <br />
                 and your Bele.Ai agent would be activated immediately.
               </p>
             </div>
 
-            {/* MINI SUMMARY BOX */}
-            <div className="w-full max-w-sm bg-[#090e14]/50 border border-white/5 p-8 rounded-3xl text-left space-y-4">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-700">
+            <div className="mx-auto w-full max-w-sm space-y-4 rounded-3xl border border-sara-light-green/12 bg-sara-dark-grey/70 p-8 text-left">
+              <span className="text-[10px] uppercase tracking-[0.25em] text-sara-mid-grey">
                 Summary
               </span>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="text-zinc-500 font-bold uppercase tracking-widest">
-                    Business:
-                  </span>
-                  <span className="text-white font-black">
-                    {formData.company}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center text-xs">
-                  <span className="text-zinc-500 font-bold uppercase tracking-widest">
-                    Trade:
-                  </span>
-                  <span className="text-white font-black">
-                    {formData.trade}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center text-xs">
-                  <span className="text-zinc-500 font-bold uppercase tracking-widest">
-                    Mobile:
-                  </span>
-                  <span className="text-white font-black">
-                    {formData.mobile}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center text-xs">
-                  <span className="text-zinc-500 font-bold uppercase tracking-widest">
-                    Hours:
-                  </span>
-                  <span className="text-white font-black">
-                    {formData.openingTime} — {formData.closingTime}
-                  </span>
-                </div>
-              </div>
+              <MiniRow label="Business" value={formData.company} />
+              <MiniRow label="Trade" value={formData.trade} />
+              <MiniRow label="Mobile" value={formData.mobile} />
+              <MiniRow
+                label="Hours"
+                value={`${formData.openingTime} — ${formData.closingTime}`}
+              />
             </div>
 
-            {/* FINAL BUTTONS */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
+            <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
               <button
-                onClick={() => onSuccess && onSuccess({ email: formData.email, name: formData.name }, "dummy-token-after-signup")}
-                className="w-full sm:w-auto flex items-center justify-center gap-3 bg-orange-500 hover:bg-orange-400 text-black px-8 py-4 rounded-xl text-lg font-black transition-all group"
+                onClick={() =>
+                  onSuccess &&
+                  onSuccess(
+                    { email: formData.email, name: formData.name },
+                    "dummy-token-after-signup"
+                  )
+                }
+                className="group flex w-full items-center justify-center gap-3 rounded-md bg-sara-light-green px-8 py-4 text-sm uppercase tracking-[0.25em] text-sara-dark-green transition-all hover:bg-[#b7c5a2] sm:w-auto"
               >
                 Try the Demo
-                <ArrowLeft className="w-5 h-5 rotate-180 transition-transform group-hover:translate-x-1" />
+                <ArrowLeft className="h-5 w-5 rotate-180 transition-transform group-hover:translate-x-1" />
               </button>
               <button
                 onClick={onBack}
-                className="w-full sm:w-auto border border-white/10 hover:border-white/20 text-white px-8 py-4 rounded-xl text-lg font-black transition-all"
+                className="w-full rounded-md border border-sara-light-green/20 px-8 py-4 text-sm uppercase tracking-[0.25em] text-sara-off-white transition-all hover:border-sara-light-green/35 sm:w-auto"
               >
                 Back to Home
               </button>
@@ -585,37 +397,37 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
           </div>
         )}
 
-        {/* GLOBAL ACTIONS - Hidden on OTP and Success screens */}
         {step < 6 && (
           <div className="mt-10 flex items-center justify-between">
             <button
               onClick={prevStep}
-              className="flex items-center gap-2 text-zinc-600 hover:text-white transition-colors text-sm font-black uppercase tracking-widest group"
+              className="group flex items-center gap-2 text-sm uppercase tracking-[0.25em] text-sara-mid-grey transition-colors hover:text-sara-off-white"
             >
               <ArrowLeft
                 size={16}
-                className="group-hover:-translate-x-1 transition-transform"
+                className="transition-transform group-hover:-translate-x-1"
               />
               Back
             </button>
 
-            {error && (
-              <p className="text-red-500 text-xs font-bold">{error}</p>
-            )}
+            {error && <p className="text-xs text-rose-300">{error}</p>}
 
             <button
               onClick={step === 5 ? handleSignup : nextStep}
-              disabled={(step === 5 && (!agreedToTerms || isSubmitting)) || isSubmitting}
-              className={`flex items-center gap-2 px-10 py-3 rounded-2xl text-lg font-black transition-all duration-300 shadow-xl hover:scale-[1.03] active:scale-95 group ${step === 5
-                ? agreedToTerms
-                  ? "bg-orange-500 text-black shadow-[0_10px_30px_rgba(249,115,22,0.3)]"
-                  : "bg-[#12181e] text-zinc-700 border border-white/5 cursor-not-allowed opacity-50"
-                : "bg-orange-500 text-black shadow-orange-500/20 hover:bg-orange-400"
-                }`}
+              disabled={
+                (step === 5 && (!agreedToTerms || isSubmitting)) || isSubmitting
+              }
+              className={`group flex items-center gap-2 rounded-md px-10 py-3 text-sm uppercase tracking-[0.25em] transition-all duration-300 hover:scale-[1.03] active:scale-95 ${
+                step === 5
+                  ? agreedToTerms
+                    ? "bg-sara-light-green text-sara-dark-green shadow-[0_10px_30px_rgba(163,177,138,0.25)]"
+                    : "cursor-not-allowed border border-sara-light-green/12 bg-sara-dark-grey text-sara-mid-grey opacity-50"
+                  : "bg-sara-light-green text-sara-dark-green hover:bg-[#b7c5a2]"
+              }`}
             >
               {isSubmitting ? (
                 <span className="flex items-center gap-2">
-                  <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                  <span className="h-4 w-4 rounded-full border-2 border-current border-t-transparent animate-spin" />
                   Processing...
                 </span>
               ) : (
@@ -623,7 +435,7 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
                   {step === 5 ? <Check size={20} className="stroke-[3]" /> : null}
                   {step === 5 ? "Complete Sign Up" : "Next"}
                   {step !== 5 && (
-                    <ArrowLeft className="w-5 h-5 rotate-180 transition-transform group-hover:translate-x-1" />
+                    <ArrowLeft className="h-5 w-5 rotate-180 transition-transform group-hover:translate-x-1" />
                   )}
                 </>
               )}
@@ -631,6 +443,28 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
           </div>
         )}
       </main>
+    </div>
+  );
+}
+
+function Section({
+  title,
+  copy,
+  children,
+}: {
+  title: string;
+  copy: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className="space-y-10">
+      <div className="space-y-2">
+        <h2 className="text-5xl tracking-tight">{title}</h2>
+        <p className="text-xs uppercase tracking-[0.12em] text-sara-light-grey">
+          {copy}
+        </p>
+      </div>
+      {children}
     </div>
   );
 }
@@ -647,24 +481,23 @@ function InputField({
 }: any) {
   return (
     <div className="space-y-3">
-      <div className="flex items-center gap-2 text-orange-500">
+      <div className="flex items-center gap-2 text-sara-light-green">
         {icon}
-        <label className="text-[10px] font-black uppercase tracking-widest">
-          {label}
-        </label>
+        <label className="text-[10px] uppercase tracking-[0.2em]">{label}</label>
       </div>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange && onChange(e.target.value)}
         placeholder={placeholder}
-        className={`w-full bg-[#12181e] border rounded-xl px-5 py-4 text-white placeholder-zinc-700 focus:outline-none focus:border-orange-500 transition-all ${highlight
-          ? "border-orange-500/30 shadow-[0_0_20px_rgba(249,115,22,0.05)]"
-          : "border-white/5"
-          }`}
+        className={`w-full rounded-md border bg-sara-dark-grey px-5 py-4 text-sara-off-white placeholder-sara-mid-grey transition-all focus:outline-none focus:border-sara-light-green ${
+          highlight
+            ? "border-sara-light-green/30 shadow-[0_0_20px_rgba(163,177,138,0.08)]"
+            : "border-sara-light-green/12"
+        }`}
       />
       {subLabel && (
-        <p className="text-zinc-600 text-[10px] font-medium leading-relaxed">
+        <p className="text-[10px] leading-relaxed text-sara-mid-grey">
           {subLabel}
         </p>
       )}
@@ -674,17 +507,20 @@ function InputField({
 
 function CheckboxField({ checked, label, sub }: any) {
   return (
-    <div className="bg-[#090e14] border border-white/5 p-6 rounded-2xl flex items-center gap-5 transition-all hover:border-white/10 group cursor-pointer">
+    <div className="group flex cursor-pointer items-center gap-5 rounded-2xl border border-sara-light-green/12 bg-sara-dark-grey p-6 transition-all hover:border-sara-light-green/24">
       <div
-        className={`w-6 h-6 rounded-md flex items-center justify-center shrink-0 border-2 transition-colors ${checked ? "bg-orange-500 border-orange-500" : "border-white/10"
-          }`}
+        className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md border-2 transition-colors ${
+          checked
+            ? "border-sara-light-green bg-sara-light-green"
+            : "border-sara-light-grey/20"
+        }`}
       >
-        {checked && <Check size={16} className="text-black" />}
+        {checked && <Check size={16} className="text-sara-dark-green" />}
       </div>
       <div className="space-y-0.5">
-        <p className="text-white font-bold text-sm tracking-tight">{label}</p>
+        <p className="text-sm tracking-tight text-sara-off-white">{label}</p>
         {sub && (
-          <p className="text-zinc-500 text-[10px] uppercase font-black tracking-widest opacity-60">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-sara-light-grey/75">
             {sub}
           </p>
         )}
@@ -695,11 +531,22 @@ function CheckboxField({ checked, label, sub }: any) {
 
 function SummaryItem({ label, value }: any) {
   return (
-    <div className="flex items-center justify-between border-b border-white/5 pb-4">
-      <span className="text-zinc-600 text-xs font-bold uppercase tracking-widest">
+    <div className="flex items-center justify-between border-b border-sara-light-green/10 pb-4">
+      <span className="text-xs uppercase tracking-[0.2em] text-sara-mid-grey">
         {label}:
       </span>
-      <span className="text-white font-black tracking-tight">{value}</span>
+      <span className="tracking-tight text-sara-off-white">{value}</span>
+    </div>
+  );
+}
+
+function MiniRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-center justify-between text-xs">
+      <span className="uppercase tracking-[0.2em] text-sara-light-grey">
+        {label}:
+      </span>
+      <span className="text-sara-off-white">{value}</span>
     </div>
   );
 }

@@ -33,12 +33,12 @@ export default function ForgotPassword({ onBack }: ForgotPasswordProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#03070b] text-white flex flex-col items-center">
-      <header className="w-full px-6 py-6 border-b border-white/5 flex items-center justify-between">
+    <div className="min-h-screen bg-sara-black text-sara-off-white flex flex-col items-center">
+      <header className="w-full px-6 py-6 border-b border-sara-light-green/15 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <button
             onClick={onBack}
-            className="text-zinc-500 hover:text-white transition-colors flex items-center gap-2 group"
+            className="text-sara-light-grey hover:text-sara-off-white transition-colors flex items-center gap-2 group"
           >
             <ArrowLeft
               size={18}
@@ -47,9 +47,9 @@ export default function ForgotPassword({ onBack }: ForgotPasswordProps) {
           </button>
 
           <div className="flex items-center gap-2">
-            <span className="text-lg font-black tracking-tighter">JUST</span>
-            <div className="border border-orange-500/50 px-2 py-0.5 rounded-sm">
-              <span className="text-[10px] font-black uppercase tracking-widest text-[#f97316]">
+            <span className="font-display text-2xl tracking-tight">JUST</span>
+            <div className="border border-sara-light-green/40 px-2 py-0.5 rounded-sm">
+              <span className="text-[10px] uppercase tracking-[0.25em] text-sara-light-green">
                 Tradie Mobile
               </span>
             </div>
@@ -60,17 +60,17 @@ export default function ForgotPassword({ onBack }: ForgotPasswordProps) {
       <main className="w-full max-w-md px-6 pt-20 animate-in fade-in slide-in-from-bottom-8 duration-700">
         <div className="space-y-10">
           <div className="space-y-2 text-center">
-            <h2 className="text-4xl font-black tracking-tighter">
+            <h2 className="text-5xl tracking-tight">
               Forgot Password
             </h2>
-            <p className="text-zinc-500 font-medium tracking-wide">
+            <p className="text-sara-light-grey text-xs uppercase tracking-[0.12em]">
               Enter your email and we'll send you a new password.
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-orange-500">
+              <div className="flex items-center gap-2 text-sara-light-green">
                 <Mail size={14} />
                 <label className="text-[10px] font-black uppercase tracking-widest">
                   Email Address
@@ -82,18 +82,18 @@ export default function ForgotPassword({ onBack }: ForgotPasswordProps) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="jon@plumbing.com.au"
-                className="w-full bg-[#12181e] border border-white/5 rounded-xl px-5 py-4 text-white placeholder-zinc-700 focus:outline-none focus:border-orange-500 transition-all"
+                className="w-full rounded-md bg-sara-dark-grey border border-sara-light-green/12 px-5 py-4 text-sara-off-white placeholder-sara-mid-grey focus:outline-none focus:border-sara-light-green transition-all"
               />
             </div>
 
             {error && (
-              <p className="text-red-500 text-xs font-bold text-center">
+              <p className="text-rose-300 text-xs text-center">
                 {error}
               </p>
             )}
 
             {message && (
-              <p className="text-emerald-500 text-xs font-bold text-center bg-emerald-500/10 py-3 rounded-lg border border-emerald-500/20">
+              <p className="rounded-md border border-sara-light-green/25 bg-sara-light-green/10 py-3 text-center text-xs text-sara-light-green">
                 {message}
               </p>
             )}
@@ -101,10 +101,10 @@ export default function ForgotPassword({ onBack }: ForgotPasswordProps) {
             <button
               type="submit"
               disabled={isSubmitting || message !== null}
-              className="w-full flex items-center justify-center gap-3 bg-orange-500 hover:bg-orange-400 text-black px-8 py-4 rounded-xl text-lg font-black transition-all shadow-xl shadow-orange-500/10 disabled:opacity-50"
+              className="w-full flex items-center justify-center gap-3 rounded-md bg-sara-light-green px-8 py-4 text-sm uppercase tracking-[0.25em] text-sara-dark-green transition-all hover:bg-[#b7c5a2] disabled:opacity-50"
             >
               {isSubmitting ? (
-                <span className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                <span className="w-5 h-5 border-2 border-sara-dark-green border-t-transparent rounded-full animate-spin" />
               ) : (
                 "Send Reset Link"
               )}
