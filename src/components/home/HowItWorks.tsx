@@ -1,4 +1,4 @@
-import { PhoneCall, Bot, ClipboardList, Send, Play } from "lucide-react";
+import { PhoneCall, Bot, ClipboardList, Send } from "lucide-react";
 
 interface HowItWorksProps {
   onGetStarted: () => void;
@@ -53,7 +53,7 @@ export default function HowItWorks({ onGetStarted }: HowItWorksProps) {
         </div>
 
         {/* STEPS GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full mb-16">
           {steps.map((step, index) => (
             <div
               key={index}
@@ -63,7 +63,7 @@ export default function HowItWorks({ onGetStarted }: HowItWorksProps) {
               <div className="absolute right-0 top-0 -z-10 h-32 w-32 bg-sara-light-green/20 blur-3xl transition-colors group-hover:bg-sara-light-green/30" />
 
               <div className="flex justify-between items-start">
-                <span className="font-display text-4xl text-sara-dark-green/20 transition-colors group-hover:text-sara-dark-green/35">
+                <span className="font-display text-4xl text-sara-dark-green/20 transition-colors -mt-1 group-hover:text-sara-dark-green/35">
                   {step.number}
                 </span>
                 <div className="rounded-xl bg-sara-dark-green/10 p-3 transition-transform group-hover:scale-110">
@@ -85,12 +85,12 @@ export default function HowItWorks({ onGetStarted }: HowItWorksProps) {
 
         {/* BOTTOM CTA */}
         <div className="mt-20 flex justify-center">
-          <button 
+          <button
             onClick={onGetStarted}
-            className="flex items-center gap-3 rounded-sm border border-sara-dark-green/15 bg-sara-dark-green px-8 py-4 text-sm uppercase tracking-[0.24em] text-sara-off-white transition-all duration-300 hover:scale-105 hover:bg-sara-black"
+            className="flex items-center gap-3 rounded-sm border border-sara-dark-green/15 bg-sara-light-green px-8 py-4 text-sm uppercase tracking-[0.24em] text-sara-dark-green transition-all duration-300 hover:bg-[#b7c5a2]"
           >
             Build Your AI Agent
-            <Play size={18} fill="currentColor" />
+            {/* <Play size={18} fill="currentColor" /> */}
           </button>
         </div>
       </div>

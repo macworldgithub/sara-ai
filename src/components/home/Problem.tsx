@@ -15,7 +15,9 @@ export default function Problem() {
           {/* Main Headline */}
           <h2 className="text-4xl leading-tight tracking-tight text-sara-dark-green md:text-6xl">
             Missed calls mean <br className="hidden sm:block" />
-            <span className="italic text-sara-light-green">missed business.</span>
+            <span className="italic text-sara-light-green">
+              missed business.
+            </span>
           </h2>
 
           {/* Body Text */}
@@ -32,7 +34,7 @@ export default function Problem() {
               <div className="rounded-lg bg-sara-dark-green/10 p-3 text-sara-dark-green transition-transform group-hover:scale-110">
                 <PhoneOff size={20} />
               </div>
-              <div className="space-y-1">
+              <div className="-mt-1">
                 <h4 className="text-base font-medium text-sara-dark-green sm:text-lg">
                   1 in 3 calls are missed
                 </h4>
@@ -43,11 +45,11 @@ export default function Problem() {
             </div>
 
             {/* Card 2 */}
-            <div className="flex items-start gap-4 rounded-2xl border border-sara-dark-green/10 bg-white/70 p-5 transition-all group hover:border-sara-dark-green/25">
+            <div className="flex items-start gap-4 rounded-2xl border border-sara-dark-green/10 bg-white/70 p-4 transition-all group hover:border-sara-dark-green/25">
               <div className="rounded-lg bg-sara-dark-green/10 p-3 text-sara-dark-green transition-transform group-hover:scale-110">
                 <TrendingDown size={20} />
               </div>
-              <div className="space-y-1">
+              <div className="-mt-1">
                 <h4 className="text-base font-medium text-sara-dark-green sm:text-lg">
                   80% call the next tradie
                 </h4>

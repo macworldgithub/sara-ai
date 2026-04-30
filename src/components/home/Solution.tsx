@@ -76,7 +76,9 @@ export default function Solution() {
             </span>
             <h2 className="text-4xl leading-[1.05] tracking-tight text-sara-off-white md:text-6xl">
               Bele.Ai answers <br />
-              <span className="italic text-sara-light-green">so you don't have to.</span>
+              <span className="italic text-sara-light-green">
+                so you don't have to.
+              </span>
             </h2>
           </div>
 
@@ -91,12 +93,12 @@ export default function Solution() {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="group flex items-start gap-4 rounded-xl border border-sara-light-green/10 bg-sara-dark-grey/70 p-5 transition-all hover:border-sara-light-green/30 hover:bg-sara-dark-grey"
+                className="group flex items-start gap-4 rounded-xl border border-sara-light-green/10 bg-sara-dark-grey/70 p-4 transition-all hover:border-sara-light-green/30 hover:bg-sara-dark-grey"
               >
                 <div className="rounded-lg bg-sara-light-green/10 p-2.5 text-sara-light-green transition-transform group-hover:scale-110">
                   {feature.icon}
                 </div>
-                <div className="space-y-1">
+                <div className="-mt-[2px]">
                   <h4 className="text-sm leading-tight text-sara-off-white sm:text-base">
                     {feature.title}
                   </h4>
