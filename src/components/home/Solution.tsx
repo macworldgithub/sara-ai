@@ -71,7 +71,7 @@ export default function Solution() {
         {/* RIGHT COLUMN: Text Content & Features */}
         <div className="w-full xl:w-1/2 space-y-10">
           <div className="space-y-4">
-            <span className="text-[10px] uppercase tracking-[0.28em] text-sara-light-grey sm:text-[11px]">
+            <span className="max-sm:text-[10px] text-[16px] uppercase tracking-[0.28em] text-sara-light-grey sm:text-[11px]">
               The Solution
             </span>
             <h2 className="text-4xl leading-[1.05] tracking-tight text-sara-off-white md:text-6xl">

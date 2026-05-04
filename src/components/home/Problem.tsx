@@ -8,7 +8,7 @@ export default function Problem() {
         {/* LEFT COLUMN: Text Content */}
         <div className="w-full xl:w-1/2 space-y-8 sm:space-y-10 order-2 xl:order-1 text-left">
           {/* Section Label */}
-          <span className="text-[10px] uppercase tracking-[0.28em] text-sara-mid-grey">
+          <span className="text-[16px] max-sm:text-[10px] uppercase tracking-[0.28em] text-sara-mid-grey">
             The Problem
           </span>
 
@@ -21,7 +21,7 @@ export default function Problem() {
           </h2>
 
           {/* Body Text */}
-          <p className="max-w-xl text-base leading-relaxed text-sara-mid-grey sm:text-lg">
+          <p className="max-w-xl sm:text-base leading-relaxed text-sara-mid-grey text-sm">
             You're on a job, your hands are full, and the phone keeps ringing.
             By the time you check, the customer's already called someone else.
             It happens every single day to tradies across Australia.

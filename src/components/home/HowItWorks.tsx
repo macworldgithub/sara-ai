@@ -1,4 +1,4 @@
-import { PhoneCall, Bot, ClipboardList, Send } from "lucide-react";
+import { PhoneCall, Bot, ClipboardList, Send, ArrowRight } from "lucide-react";
 
 interface HowItWorksProps {
   onGetStarted: () => void;
@@ -41,13 +41,13 @@ export default function HowItWorks({ onGetStarted }: HowItWorksProps) {
       <div className="mx-auto flex max-w-7xl flex-col items-center">
         {/* HEADER */}
         <div className="text-center space-y-4 mb-20 max-w-2xl">
-          <span className="text-[10px] uppercase tracking-[0.28em] text-sara-mid-grey sm:text-[11px]">
+          <span className="text-[10px] uppercase tracking-[0.28em] text-sara-mid-grey sm:text-[16px]">
             How It Works
           </span>
           <h2 className="text-4xl leading-tight tracking-tight text-sara-dark-green md:text-5xl">
             Four steps. Zero missed leads.
           </h2>
-          <p className="text-base text-sara-mid-grey sm:text-lg">
+          <p className="sm:text-base text-sara-mid-grey text-sm">
             From missed call to qualified lead in under 60 seconds.
           </p>
         </div>
@@ -85,12 +85,23 @@ export default function HowItWorks({ onGetStarted }: HowItWorksProps) {
 
         {/* BOTTOM CTA */}
         <div className="mt-20 flex justify-center">
-          <button
+          {/* <button
             onClick={onGetStarted}
             className="flex items-center gap-3 rounded-sm border border-sara-dark-green/15 bg-sara-light-green px-8 py-4 text-sm uppercase tracking-[0.24em] text-sara-dark-green transition-all duration-300 hover:bg-[#b7c5a2]"
           >
             Build Your AI Agent
-            {/* <Play size={18} fill="currentColor" /> */}
+          
+          </button> */}
+
+          <button
+            onClick={onGetStarted}
+            className="bg-sara-light-green group flex w-full items-center justify-center gap-3 rounded-md border border-sara-light-grey/35 px-8 py-4 text-sm uppercase text-sara-dark-green transition-all hover:border-sara-light-green hover:bg-[#b7c5a2] sm:w-auto max-sm:text-[14px]"
+          >
+            Build Your AI Agent
+            <ArrowRight
+              size={18}
+              className="transition-transform group-hover:translate-x-1"
+            />
           </button>
         </div>
       </div>

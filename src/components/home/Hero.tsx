@@ -9,12 +9,12 @@ interface HeroProps {
 export default function Hero({ onGetStarted, onWatchDemo }: HeroProps) {
   return (
     <section className="bg-sara-black px-6 pb-10 pt-8 sm:px-10 lg:px-18">
-      <div className="mx-auto w-full max-w-[1500px] rounded-xl border border-sara-light-green/20 bg-sara-dark-green px-8 py-10 shadow-sara-soft sm:px-10 sm:py-14 lg:px-24 lg:py-24">
-        <div className="flex w-full flex-col lg:flex-row items-center  lg:items-center  gap-12">
+      <div className="mx-auto w-full max-w-[1500px] rounded-xl border border-sara-light-green/20 bg-sara-dark-green px-8 py-8 shadow-sara-soft sm:px-10 sm:py-10 lg:px-16 lg:py-16">
+        <div className="flex w-full flex-col lg:flex-row items-center lg:items-center  gap-12">
           {/* LEFT CONTENT */}
-          <div className="w-full lg:w-1/2 flex flex-col items-start text-left">
+          <div className="w-full xl:w-[60%] lg:w-[50%] flex flex-col items-start text-left">
             <div className="mb-8 inline-flex items-center rounded-sm bg-sara-light-green px-4 py-2">
-              <span className="text-[10px] max-sm:text-[8px] uppercase text-sara-dark-green">
+              <span className="text-[16px] max-sm:text-[10px] uppercase text-sara-dark-green">
                 Smart AI Response Assistant
               </span>
             </div>
@@ -27,7 +27,7 @@ export default function Hero({ onGetStarted, onWatchDemo }: HeroProps) {
               </span>
             </h1>
 
-            <p className="mb-10 max-w-3xl text-md leading-[1.9] text-sara-light-grey sm:text-lg">
+            <p className="mb-10 max-w-3xl sm:text-base leading-[1.9] text-sara-light-grey text-sm">
               SARA handles your inbound conversations, qualifies leads, and
               books appointments so your team focuses on closing, not chasing.
             </p>
@@ -52,12 +52,12 @@ export default function Hero({ onGetStarted, onWatchDemo }: HeroProps) {
               </button>
             </div>
 
-            <div className="grid w-full max-w-3xl grid-cols-3 max-md:grid-cols-2 gap-8 border-t border-sara-light-green/20 pt-8 sm:gap-6">
+            <div className="grid w-full max-w-3xl grid-cols-3  gap-8 border-t border-sara-light-green/20 pt-8 sm:gap-6">
               <div className="flex flex-col gap-1">
                 <span className="font-display text-5xl leading-none text-sara-light-green max-md:text-3xl">
                   3x
                 </span>
-                <span className="text-[16px] uppercase text-sara-light-grey max-sm:text-[12px]">
+                <span className="text-[16px] uppercase text-sara-light-grey max-sm:text-[10px]">
                   Faster Response
                 </span>
               </div>
@@ -65,7 +65,7 @@ export default function Hero({ onGetStarted, onWatchDemo }: HeroProps) {
                 <span className="font-display text-5xl leading-none text-sara-light-green max-md:text-3xl">
                   24/7
                 </span>
-                <span className="text-[16px] uppercase text-sara-light-grey max-sm:text-[12px]">
+                <span className="text-[16px] uppercase text-sara-light-grey max-sm:text-[10px]">
                   Always On
                 </span>
               </div>
@@ -73,7 +73,7 @@ export default function Hero({ onGetStarted, onWatchDemo }: HeroProps) {
                 <span className="font-display text-5xl leading-none text-sara-light-green max-md:text-3xl">
                   ~40%
                 </span>
-                <span className="text-[16px] uppercase text-sara-light-grey max-sm:text-[12px]">
+                <span className="text-[16px] uppercase text-sara-light-grey max-sm:text-[10px]">
                   Less Admin
                 </span>
               </div>
@@ -81,14 +81,8 @@ export default function Hero({ onGetStarted, onWatchDemo }: HeroProps) {
           </div>
 
           {/* RIGHT IMAGE */}
-          {/* <div className="rounded-lg flex justify-center lg:justify-end max-lg:hidden">
-            <img
-              src={heroImg}
-              alt="Hero"
-              className="object-contain rounded-xl"
-            />
-          </div> */}
-          <div className="hidden lg:flex lg:w-1/2 justify-end">
+
+          <div className="hidden lg:flex xl:w-[40%] max-xl:w-[50%] justify-end">
             <img
               src={heroImg}
               alt="Hero"
