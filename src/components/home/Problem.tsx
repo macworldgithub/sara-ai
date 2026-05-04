@@ -3,7 +3,7 @@ import { PhoneOff, TrendingDown } from "lucide-react";
 
 export default function Problem() {
   return (
-    <section className="border-t border-sara-dark-green/10 bg-sara-off-white px-6 py-16 text-sara-dark-green sm:px-12 sm:py-24 lg:px-24">
+    <section className="border-t border-sara-dark-green/10 bg-sara-off-white px-6 py-2 text-sara-dark-green sm:px-12 sm:py-0 lg:px-24">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-12 lg:gap-20 xl:flex-row">
         {/* LEFT COLUMN: Text Content */}
         <div className="w-full xl:w-1/2 space-y-8 sm:space-y-10 order-2 xl:order-1 text-left">
@@ -13,7 +13,7 @@ export default function Problem() {
           </span>
 
           {/* Main Headline */}
-          <h2 className="text-4xl leading-tight tracking-tight text-sara-dark-green md:text-6xl">
+          <h2 className="text-4xl leading-tight tracking-tight text-sara-dark-green md:text-6xl ">
             Missed calls mean <br className="hidden sm:block" />
             <span className="italic text-sara-light-green">
               missed business.
@@ -21,14 +21,14 @@ export default function Problem() {
           </h2>
 
           {/* Body Text */}
-          <p className="max-w-xl sm:text-base leading-relaxed text-sara-mid-grey text-sm">
+          <p className="max-w-xl sm:text-base leading-relaxed text-sara-mid-grey text-sm  ">
             You're on a job, your hands are full, and the phone keeps ringing.
             By the time you check, the customer's already called someone else.
             It happens every single day to tradies across Australia.
           </p>
 
           {/* Feature Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 gap-4 ">
             {/* Card 1 */}
             <div className="flex items-start gap-4 rounded-2xl border border-sara-dark-green/10 bg-white/70 p-4 transition-all group hover:border-sara-dark-green/25">
               <div className="rounded-lg bg-sara-dark-green/10 p-3 text-sara-dark-green transition-transform group-hover:scale-110">

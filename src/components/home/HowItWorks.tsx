@@ -37,7 +37,7 @@ export default function HowItWorks({ onGetStarted }: HowItWorksProps) {
   ];
 
   return (
-    <section className="border-t border-sara-dark-green/10 bg-sara-off-white px-6 py-24 text-sara-dark-green sm:px-12 lg:px-24">
+    <section className="border-t border-sara-dark-green/10 bg-sara-off-white px-6 py-0 text-sara-dark-green sm:px-12 lg:px-24">
       <div className="mx-auto flex max-w-7xl flex-col items-center">
         {/* HEADER */}
         <div className="text-center space-y-4 mb-20 max-w-2xl">
@@ -84,7 +84,7 @@ export default function HowItWorks({ onGetStarted }: HowItWorksProps) {
         </div>
 
         {/* BOTTOM CTA */}
-        <div className="mt-20 flex justify-center">
+        <div className="mt-0 flex justify-center">
           {/* <button
             onClick={onGetStarted}
             className="flex items-center gap-3 rounded-sm border border-sara-dark-green/15 bg-sara-light-green px-8 py-4 text-sm uppercase tracking-[0.24em] text-sara-dark-green transition-all duration-300 hover:bg-[#b7c5a2]"
