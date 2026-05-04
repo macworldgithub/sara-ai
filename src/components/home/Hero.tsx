@@ -19,11 +19,20 @@ export default function Hero({ onGetStarted, onWatchDemo }: HeroProps) {
               </span>
             </div>
 
-            <h1 className="mb-6 max-w-3xl text-4xl sm:text-5xl leading-[0.95] text-sara-off-white md:text-7xl">
-              Automate <span className="block sm:inline">the work.</span>
+            {/* <h1 className="mb-6 max-w-3xl text-4xl sm:text-5xl leading-[0.95] text-sara-off-white md:text-7xl">
+              Automate <span className="block sm:inline">the work</span>
               <br />
               <span className="italic text-sara-light-green">
                 Keep the relationship.
+              </span>
+            </h1> */}
+
+            <h1 className="mb-6 max-w-3xl text-4xl sm:text-5xl leading-[0.95] text-sara-off-white md:text-7xl">
+              Automate <span className="block sm:inline">the work</span>
+              <br />
+              <span className="italic text-sara-light-green">
+                <span className="block sm:inline">Keep</span>{" "}
+                <span className="block sm:inline">the relationship.</span>
               </span>
             </h1>
 
