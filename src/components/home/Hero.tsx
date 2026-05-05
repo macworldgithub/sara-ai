@@ -1,6 +1,4 @@
 import { ArrowRight } from "lucide-react";
-import heroImg from "../../../src/assets/image.png"; // 👈 update path if needed
-import heroMobile from  "../../assets/hero-mobile.png"
 import hero from "../../assets/Hero-Lineart.png"
 
 interface HeroProps {
