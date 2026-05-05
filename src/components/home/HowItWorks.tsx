@@ -40,14 +40,14 @@ export default function HowItWorks({ onGetStarted }: HowItWorksProps) {
     <section className="border-t border-sara-dark-green/10 bg-sara-off-white px-6 py-0 text-sara-dark-green sm:px-12 lg:px-24">
       <div className="mx-auto flex max-w-7xl flex-col items-center">
         {/* HEADER */}
-        <div className="text-center space-y-4 mb-20 max-w-2xl">
+        <div className="text-center space-y-4 mb-10 max-w-2xl">
           <span className="text-[10px] uppercase tracking-[0.28em] text-sara-mid-grey sm:text-[16px]">
             How It Works
           </span>
           <h2 className="text-4xl leading-tight tracking-tight text-sara-dark-green md:text-5xl">
             Four steps. Zero missed leads.
           </h2>
-          <p className="sm:text-base text-sara-mid-grey text-sm">
+          <p className="sm:text-base text-sara-mid-grey  text-sm">
             From missed call to qualified lead in under 60 seconds.
           </p>
         </div>
