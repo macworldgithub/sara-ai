@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Menu, X, Mic, LogOut } from "lucide-react";
 import logo from "../../assets/logo.png";
+import sara from "../../assets/sara-logo.jpeg"
+
 
 interface NavbarProps {
   onGetStarted: () => void;
@@ -18,7 +20,7 @@ export default function Navbar({ onGetStarted, onWatchDemo, onLogin, isLoggedIn,
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* LEFT: Logo Section */}
         <div className="flex items-center gap-3">
-          <img src={logo} alt="Logo" className="h-16 w-auto" />
+          <img src={sara} alt="Logo" className="h-10  w-32" />
         </div>
 
         {/* RIGHT (Desktop) - Shows only on LG screens (1024px) and above */}
