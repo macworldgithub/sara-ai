@@ -23,7 +23,7 @@ export const authService = {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ email, otp }),
-    });
+    }); 
     return response.json();
   },
 

@@ -1,5 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import heroImg from "../../../src/assets/image.png"; // 👈 update path if needed
+import heroMobile from  "../../assets/hero-mobile.png"
+import hero from "../../assets/Hero-Lineart.png"
 
 interface HeroProps {
   onGetStarted: () => void;
@@ -93,7 +95,7 @@ export default function Hero({ onGetStarted, onWatchDemo }: HeroProps) {
 
           <div className="hidden lg:flex xl:w-[40%] max-xl:w-[50%] justify-end">
             <img
-              src={heroImg}
+              src={hero}
               alt="Hero"
               className="w-full max-w-[650px] h-auto object-contain rounded-xl"
             />
