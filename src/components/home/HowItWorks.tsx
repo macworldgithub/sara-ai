@@ -84,14 +84,8 @@ export default function HowItWorks({ onGetStarted }: HowItWorksProps) {
         </div>
 
         {/* BOTTOM CTA */}
-        <div className="mt-8 flex justify-center">
-          {/* <button
-            onClick={onGetStarted}
-            className="flex items-center gap-3 rounded-sm border border-sara-dark-green/15 bg-sara-light-green px-8 py-4 text-sm uppercase tracking-[0.24em] text-sara-dark-green transition-all duration-300 hover:bg-[#b7c5a2]"
-          >
-            Build Your AI Agent
-          
-          </button> */}
+        <div className="my-2 flex justify-center">
+       
 
           <button
             onClick={onGetStarted}
