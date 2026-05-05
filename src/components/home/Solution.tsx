@@ -43,7 +43,7 @@ export default function Solution() {
   ];
 
   return (
-    <section className="bg-sara-black px-6 py-2 text-sara-off-white sm:px-12 lg:px-24">
+    <section className="bg-sara-black px-6 py-12 text-sara-off-white sm:px-12 sm:py-12 lg:px-24 lg:py-12">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-16 lg:gap-24 xl:flex-row">
         {/* LEFT COLUMN: Illustration/Image */}
         <div className="w-full xl:w-1/2 relative group">
@@ -112,14 +112,14 @@ export default function Solution() {
 
           <div className="mx-auto flex max-w-4xl flex-col items-center">
             {/* Description */}
-            <p className="max-w-3xl text-base leading-relaxed text-sara-light-grey md:text-base mb-0">
+            <p className="max-w-3xl text-base leading-relaxed text-sara-light-grey md:text-base mb-8">
               When a customer calls and you can't answer, Bele.Ai picks up after
               3 rings. It greets the caller professionally, qualifies the job,
               captures all their details, and sends you an SMS instantly.
             </p>
 
             {/* Features Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-0 w-full max-w-3xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 w-full max-w-3xl">
               {features.map((feature, index) => (
                 <div
                   key={index}

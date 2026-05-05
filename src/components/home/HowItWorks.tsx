@@ -37,10 +37,10 @@ export default function HowItWorks({ onGetStarted }: HowItWorksProps) {
   ];
 
   return (
-    <section className="border-t border-sara-dark-green/10 bg-sara-off-white px-6 py-0 text-sara-dark-green sm:px-12 lg:px-24">
+    <section className="border-t border-sara-dark-green/10 bg-sara-off-white px-6 py-12 text-sara-dark-green sm:px-12 sm:py-12 lg:px-24 lg:py-12">
       <div className="mx-auto flex max-w-7xl flex-col items-center">
         {/* HEADER */}
-        <div className="text-center space-y-4 mb-10 max-w-2xl">
+        <div className="text-center space-y-4 mb-8 max-w-2xl">
           <span className="text-[10px] uppercase tracking-[0.28em] text-sara-mid-grey sm:text-[16px]">
             How It Works
           </span>
@@ -53,7 +53,7 @@ export default function HowItWorks({ onGetStarted }: HowItWorksProps) {
         </div>
 
         {/* STEPS GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full mb-12">
           {steps.map((step, index) => (
             <div
               key={index}
@@ -84,7 +84,7 @@ export default function HowItWorks({ onGetStarted }: HowItWorksProps) {
         </div>
 
         {/* BOTTOM CTA */}
-        <div className="mt-0 flex justify-center">
+        <div className="mt-8 flex justify-center">
           {/* <button
             onClick={onGetStarted}
             className="flex items-center gap-3 rounded-sm border border-sara-dark-green/15 bg-sara-light-green px-8 py-4 text-sm uppercase tracking-[0.24em] text-sara-dark-green transition-all duration-300 hover:bg-[#b7c5a2]"

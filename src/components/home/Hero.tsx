@@ -8,8 +8,8 @@ interface HeroProps {
 
 export default function Hero({ onGetStarted, onWatchDemo }: HeroProps) {
   return (
-    <section className="bg-sara-black px-6 pb-10 pt-8 sm:px-10 lg:px-18">
-      <div className="mx-auto w-full max-w-[1500px] rounded-xl border border-sara-light-green/20 bg-sara-dark-green px-8 py-0 shadow-sara-soft sm:px-10 sm:py-10 lg:px-16 lg:py-0">
+    <section className="bg-sara-black px-6 pb-10 pt-8 sm:px-10 lg:px-18 py-12">
+      <div className="mx-auto w-full max-w-[1500px] rounded-xl border border-sara-light-green/20 bg-sara-dark-green px-8 py-12 shadow-sara-soft sm:px-10 sm:py-12 lg:px-16 lg:py-12">
         <div className="flex w-full flex-col lg:flex-row items-center lg:items-center  gap-12">
           {/* LEFT CONTENT */}
           <div className="w-full xl:w-[60%] lg:w-[50%] flex flex-col items-start text-left">
@@ -19,13 +19,6 @@ export default function Hero({ onGetStarted, onWatchDemo }: HeroProps) {
               </span>
             </div>
 
-            {/* <h1 className="mb-6 max-w-3xl text-4xl sm:text-5xl leading-[0.95] text-sara-off-white md:text-7xl">
-              Automate <span className="block sm:inline">the work</span>
-              <br />
-              <span className="italic text-sara-light-green">
-                Keep the relationship.
-              </span>
-            </h1> */}
 
             <h1 className="mb-6 max-w-3xl text-4xl sm:text-5xl leading-[0.95] text-sara-off-white md:text-7xl">
               Automate <span className="block sm:inline">the work</span>

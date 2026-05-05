@@ -3,7 +3,7 @@ import { PhoneOff, TrendingDown } from "lucide-react";
 
 export default function Problem() {
   return (
-    <section className="border-t border-sara-dark-green/10 bg-sara-off-white px-6 py-2 text-sara-dark-green sm:px-12 sm:py-0 lg:px-24">
+    <section className="border-t border-sara-dark-green/10 bg-sara-off-white px-6 py-12 text-sara-dark-green sm:px-12 sm:py-12 lg:px-24 lg:py-12">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-12 lg:gap-20 xl:flex-row">
         {/* LEFT COLUMN: Text Content */}
         <div className="w-full xl:w-1/2 space-y-8 sm:space-y-10 order-2 xl:order-1 text-left">

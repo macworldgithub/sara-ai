@@ -13,12 +13,12 @@ export default function Mindset({ onGetStarted, onWatchDemo }: MindsetProps) {
   ];
 
   return (
-    <section className="bg-sara-dark-green px-6 py-0 text-sara-off-white sm:px-12 lg:px-24">
+    <section className="bg-sara-dark-green px-6 py-12 text-sara-off-white sm:px-12 sm:py-12 lg:px-24 lg:py-12">
       <div className="mx-auto flex max-w-4xl flex-col items-center">
         {/* MINDSET HEADER */}
         {/* <div className="text-center space-y-4 mb-12"> */}
 
-        <div className="text-center space-y-4 mb-6">
+        <div className="text-center space-y-4 mb-8">
           <span className="text-[10px] uppercase tracking-[0.28em] text-sara-light-grey sm:text-[16px]">
             Our Mindset
           </span>
@@ -28,7 +28,7 @@ export default function Mindset({ onGetStarted, onWatchDemo }: MindsetProps) {
         </div>
 
         {/* PRINCIPLES LIST */}
-        <div className="w-full max-w-2xl space-y-4 mb-6">
+        <div className="w-full max-w-2xl space-y-4 mb-8">
           {principles.map((principle, index) => (
             <div
               key={index}
@@ -45,7 +45,7 @@ export default function Mindset({ onGetStarted, onWatchDemo }: MindsetProps) {
         </div>
 
         {/* MISSION STATEMENT */}
-        <p className="mb-0 max-w-2xl text-center text-sm leading-relaxed text-sara-light-grey sm:text-base">
+        <p className="mb-8 max-w-2xl text-center text-sm leading-relaxed text-sara-light-grey sm:text-base">
           Our mission is to revolutionise utilities through simplicity and
           automation. Just Tradie Mobile is built for tradies who want to focus
           on the job — not the phone.
