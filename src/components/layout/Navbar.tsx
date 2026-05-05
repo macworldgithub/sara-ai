@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Menu, X, Mic, LogOut } from "lucide-react";
-import logo from "../../assets/logo.png";
 import sara from "../../assets/sara-logo.jpeg"
 
 
