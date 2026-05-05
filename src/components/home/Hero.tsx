@@ -9,7 +9,7 @@ interface HeroProps {
 export default function Hero({ onGetStarted, onWatchDemo }: HeroProps) {
   return (
     <section className="bg-sara-black px-6 pb-10 pt-8 sm:px-10 lg:px-18">
-      <div className="mx-auto w-full max-w-[1500px] rounded-xl border border-sara-light-green/20 bg-sara-dark-green px-8 py-8 shadow-sara-soft sm:px-10 sm:py-10 lg:px-16 lg:py-16">
+      <div className="mx-auto w-full max-w-[1500px] rounded-xl border border-sara-light-green/20 bg-sara-dark-green px-8 py-0 shadow-sara-soft sm:px-10 sm:py-10 lg:px-16 lg:py-0">
         <div className="flex w-full flex-col lg:flex-row items-center lg:items-center  gap-12">
           {/* LEFT CONTENT */}
           <div className="w-full xl:w-[60%] lg:w-[50%] flex flex-col items-start text-left">

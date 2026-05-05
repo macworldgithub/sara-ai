@@ -43,7 +43,7 @@ export default function Solution() {
   ];
 
   return (
-    <section className="bg-sara-black px-6 py-24 text-sara-off-white sm:px-12 lg:px-24">
+    <section className="bg-sara-black px-6 py-2 text-sara-off-white sm:px-12 lg:px-24">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-16 lg:gap-24 xl:flex-row">
         {/* LEFT COLUMN: Illustration/Image */}
         <div className="w-full xl:w-1/2 relative group">
@@ -71,10 +71,10 @@ export default function Solution() {
         {/* RIGHT COLUMN: Text Content & Features */}
         <div className="w-full xl:w-1/2 space-y-10">
           <div className="space-y-4">
-            <span className="max-sm:text-[10px] text-[16px] uppercase tracking-[0.28em] text-sara-light-grey sm:text-[11px]">
+            <span className="max-sm:text-[10px] text-[16px] uppercase tracking-[0.28em]  text-sara-light-grey sm:text-[11px]">
               The Solution
             </span>
-            <h2 className="text-4xl leading-[1.05] tracking-tight text-sara-off-white md:text-6xl">
+            <h2 className="text-4xl leading-[1.05] tracking-tight text-sara-off-white md:text-6xl ">
               Bele.Ai answers <br />
               <span className="italic text-sara-light-green">
                 so you don't have to.
@@ -82,14 +82,14 @@ export default function Solution() {
             </h2>
           </div>
 
-          <p className="max-w-3xl text-base leading-relaxed text-sara-light-grey md:text-base">
+          {/* <p className="max-w-3xl text-base leading-relaxed text-sara-light-grey md:text-base ">
             When a customer calls and you can't answer, Bele.Ai picks up after 3
             rings. It greets the caller professionally, qualifies the job,
             captures all their details, and sends you an SMS instantly.
-          </p>
+          </p> */}
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
             {features.map((feature, index) => (
               <div
                 key={index}
@@ -108,6 +108,38 @@ export default function Solution() {
                 </div>
               </div>
             ))}
+          </div> */}
+
+          <div className="mx-auto flex max-w-4xl flex-col items-center">
+            {/* Description */}
+            <p className="max-w-3xl text-base leading-relaxed text-sara-light-grey md:text-base mb-0">
+              When a customer calls and you can't answer, Bele.Ai picks up after
+              3 rings. It greets the caller professionally, qualifies the job,
+              captures all their details, and sends you an SMS instantly.
+            </p>
+
+            {/* Features Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-0 w-full max-w-3xl">
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="group flex items-start gap-4 rounded-xl border border-sara-light-green/10 bg-sara-dark-grey/70 p-4 transition-all hover:border-sara-light-green/30 hover:bg-sara-dark-grey"
+                >
+                  <div className="rounded-lg bg-sara-light-green/10 p-2.5 text-sara-light-green transition-transform group-hover:scale-110">
+                    {feature.icon}
+                  </div>
+
+                  <div className="-mt-[2px]">
+                    <h4 className="text-sm leading-tight text-sara-off-white sm:text-base">
+                      {feature.title}
+                    </h4>
+                    <p className="text-[11px] tracking-wide text-sara-light-grey sm:text-xs">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
