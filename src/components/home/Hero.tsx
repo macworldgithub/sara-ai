@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import hero from "../../assets/Hero-Lineart.png"
+import hero from "../../assets/Hero-Lineart.png";
 
 interface HeroProps {
   onGetStarted: () => void;
@@ -18,7 +18,6 @@ export default function Hero({ onGetStarted, onWatchDemo }: HeroProps) {
                 Smart AI Response Assistant
               </span>
             </div>
-
 
             <h1 className="mb-6 max-w-3xl text-4xl sm:text-5xl leading-[0.95] text-sara-off-white md:text-7xl">
               Automate <span className="block sm:inline">the work</span>

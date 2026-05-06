@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Menu, X, Mic, LogOut } from "lucide-react";
-import sara from "../../assets/sara-logo.jpeg"
-
+import sara from "../../assets/saras-log.png";
 
 interface NavbarProps {
   onGetStarted: () => void;
@@ -11,7 +10,13 @@ interface NavbarProps {
   onLogout?: () => void;
 }
 
-export default function Navbar({ onGetStarted, onWatchDemo, onLogin, isLoggedIn, onLogout }: NavbarProps) {
+export default function Navbar({
+  onGetStarted,
+  onWatchDemo,
+  onLogin,
+  isLoggedIn,
+  onLogout,
+}: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -19,7 +24,7 @@ export default function Navbar({ onGetStarted, onWatchDemo, onLogin, isLoggedIn,
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* LEFT: Logo Section */}
         <div className="flex items-center gap-3">
-          <img src={sara} alt="Logo" className="h-10  w-32" />
+          <img src={sara} alt="Logo" className="h-16 w-auto object-contain scale-[1.4] origin-left" />
         </div>
 
         {/* RIGHT (Desktop) - Shows only on LG screens (1024px) and above */}
@@ -84,7 +89,10 @@ export default function Navbar({ onGetStarted, onWatchDemo, onLogin, isLoggedIn,
 
           <div className="flex flex-col gap-3">
             <button
-              onClick={() => { onWatchDemo(); setIsOpen(false); }}
+              onClick={() => {
+                onWatchDemo();
+                setIsOpen(false);
+              }}
               className="flex items-center justify-center gap-2 rounded-sm bg-sara-light-green py-4 text-sm uppercase tracking-[0.2em] text-sara-dark-green shadow-lg transition-transform active:scale-95"
             >
               <Mic size={18} fill="black" />
@@ -94,7 +102,10 @@ export default function Navbar({ onGetStarted, onWatchDemo, onLogin, isLoggedIn,
             {isLoggedIn ? (
               <div className="flex flex-col gap-3">
                 <button
-                  onClick={() => { onLogout && onLogout(); setIsOpen(false); }}
+                  onClick={() => {
+                    onLogout && onLogout();
+                    setIsOpen(false);
+                  }}
                   className="flex w-full items-center justify-center gap-2 rounded-sm border border-rose-400/30 bg-rose-400/10 p-4 text-xs uppercase tracking-[0.2em] text-rose-300 transition-all hover:bg-rose-500 hover:text-white"
                 >
                   <LogOut size={18} />
@@ -104,14 +115,20 @@ export default function Navbar({ onGetStarted, onWatchDemo, onLogin, isLoggedIn,
             ) : (
               <>
                 <button
-                  onClick={() => { onLogin && onLogin(); setIsOpen(false); }}
+                  onClick={() => {
+                    onLogin && onLogin();
+                    setIsOpen(false);
+                  }}
                   className="w-full rounded-sm border border-sara-light-green/20 p-4 text-xs uppercase tracking-[0.2em] text-sara-off-white transition-all hover:bg-sara-light-green/10"
                 >
                   Log In
                 </button>
 
                 <button
-                  onClick={() => { onGetStarted(); setIsOpen(false); }}
+                  onClick={() => {
+                    onGetStarted();
+                    setIsOpen(false);
+                  }}
                   className="w-full rounded-sm border border-sara-light-green/15 bg-sara-black p-4 text-xs uppercase tracking-[0.2em] text-sara-light-green transition-all hover:bg-sara-light-green hover:text-sara-dark-green"
                 >
                   Sign Up
