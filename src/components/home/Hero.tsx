@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import hero from "../../assets/Hero-Lineart.png";
+import hero from "../../assets/HeroLineart.png";
 
 interface HeroProps {
   onGetStarted: () => void;
