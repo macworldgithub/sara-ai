@@ -58,7 +58,7 @@ export default function ChangePassword({ onBack, token }: ChangePasswordProps) {
             <span className="font-display text-2xl tracking-tight">JUST</span>
             <div className="border border-sara-light-green/40 px-2 py-0.5 rounded-sm">
               <span className="text-[10px] uppercase tracking-[0.25em] text-sara-light-green">
-                Tradie Mobile
+                Tradie AI
               </span>
             </div>
           </div>

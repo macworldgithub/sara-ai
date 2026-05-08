@@ -9,7 +9,7 @@ export default function Footer() {
           </h2> */}
           <div className="rounded-sm border border-sara-light-green/30 px-3 py-1">
             <span className="text-[8px] uppercase tracking-[0.25em] text-sara-light-green">
-              Tradie Mobile
+              Tradie AI
             </span>
           </div>
         </div>
@@ -17,7 +17,7 @@ export default function Footer() {
         {/* RIGHT: Attribution */}
         <div className="text-center md:text-right">
           <p className="text-[8px] uppercase leading-relaxed tracking-[0.18em] text-sara-light-grey md:text-[10px]">
-            Powered by Tradie Mobile — Revolutionising utilities Through{" "}
+            Powered by Tradie AI — Revolutionising utilities Through{" "}
             <br className="sm:hidden" /> Simplicity and Automation
           </p>
         </div>

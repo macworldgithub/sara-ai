@@ -37,7 +37,7 @@ export default function Demo({ onBack }: DemoProps) {
               JUST
             </span>
             <span className="text-sm uppercase tracking-[0.2em] text-sara-light-green">
-              TRADIE MOBILE
+              Tradie AI
             </span>
           </div>
         </div>
@@ -104,10 +104,10 @@ export default function Demo({ onBack }: DemoProps) {
             {/* HEADERS */}
             <div className="space-y-4">
               <h1 className="text-3xl leading-tight tracking-tight text-sara-off-white md:text-5xl">
-                Experience Tradie Mobile in Action
+                Experience Tradie AI in Action
               </h1>
               <p className="mx-auto max-w-md text-sm leading-relaxed text-sara-light-grey">
-                Watch how Tradie Mobile handles a missed call, captures the
+                Watch how Tradie AI handles a missed call, captures the
                 lead, and sends a real SMS to your phone.
               </p>
             </div>
@@ -234,7 +234,7 @@ export default function Demo({ onBack }: DemoProps) {
               <span>00:00</span>
               <span>RINGS: {rings}/3</span>
               <span className="text-sara-light-green opacity-60">
-                Tradie Mobile
+                Tradie AI
               </span>
             </div>
           </div>

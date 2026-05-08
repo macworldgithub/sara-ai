@@ -34,7 +34,7 @@ export default function Navbar({
         {/* RIGHT (Desktop) - Shows only on LG screens (1024px) and above */}
         <div className="hidden lg:flex items-center gap-6">
           <span className="whitespace-nowrap text-[10px] uppercase tracking-[0.25em] text-sara-light-grey">
-            POWERED BY Tradie Mobile
+            POWERED BY Tradie AI
           </span>
 
           <div className="flex items-center gap-3">
@@ -87,7 +87,7 @@ export default function Navbar({
               POWERED BY
             </span>
             <span className="text-xs uppercase tracking-[0.25em] text-sara-off-white leading-none">
-              Tradie Mobile
+              Tradie AI
             </span>
           </div>
 

@@ -50,7 +50,7 @@ export default function Solution() {
           <div className="relative h-[350px] overflow-hidden rounded-[2rem] border border-sara-light-green/10 shadow-sara-soft sm:min-h-[450px] lg:min-h-[550px]">
             <img
               src={solutionIllustration}
-              alt="Tradie Mobile Solution Illustration"
+              alt="Tradie AI Solution Illustration"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             />
             {/* Dark Overlay for bottom text stability */}
@@ -75,7 +75,7 @@ export default function Solution() {
               The Solution
             </span>
             <h2 className="text-4xl leading-[1.05] tracking-tight text-sara-off-white md:text-6xl ">
-              Tradie Mobile answers <br />
+              Tradie AI answers <br />
               <span className="italic text-sara-light-green">
                 so you don't have to.
               </span>
@@ -83,7 +83,7 @@ export default function Solution() {
           </div>
 
           {/* <p className="max-w-3xl text-base leading-relaxed text-sara-light-grey md:text-base ">
-            When a customer calls and you can't answer, Tradie Mobile picks up after 3
+            When a customer calls and you can't answer, Tradie AI picks up after 3
             rings. It greets the caller professionally, qualifies the job,
             captures all their details, and sends you an SMS instantly.
           </p> */}
@@ -113,7 +113,7 @@ export default function Solution() {
           <div className="mx-auto flex max-w-4xl flex-col items-center">
             {/* Description */}
             <p className="max-w-3xl text-base leading-relaxed text-sara-light-grey md:text-base mb-8">
-              When a customer calls and you can't answer, Tradie Mobile picks up
+              When a customer calls and you can't answer, Tradie AI picks up
               after 3 rings. It greets the caller professionally, qualifies the
               job, captures all their details, and sends you an SMS instantly.
             </p>

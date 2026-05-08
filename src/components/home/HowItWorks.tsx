@@ -16,9 +16,9 @@ export default function HowItWorks({ onGetStarted }: HowItWorksProps) {
     {
       number: "02",
       icon: <Bot size={24} className="text-sara-dark-green" />,
-      title: "Tradie Mobile Picks Up",
+      title: "Tradie AI Picks Up",
       description:
-        "If you don't answer, Tradie Mobile answers with a professional greeting using your business name.",
+        "If you don't answer, Tradie AI answers with a professional greeting using your business name.",
     },
     {
       number: "03",

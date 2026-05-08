@@ -211,7 +211,7 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
         {step === 2 && (
           <Section
             title="What Trade Are You?"
-            copy="This helps Tradie Mobile qualify callers and check they need the right trade."
+            copy="This helps Tradie AI qualify callers and check they need the right trade."
           >
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {trades.map((t) => (
@@ -310,7 +310,7 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
         {step === 4 && (
           <Section
             title="Working Hours & Delivery"
-            copy="Set your business hours so Tradie Mobile can greet callers differently after hours."
+            copy="Set your business hours so Tradie AI can greet callers differently after hours."
           >
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               <InputField
@@ -464,7 +464,7 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
                 In a real sign-up, you'd receive a confirmation email at <br />
                 <span className="text-sara-off-white">{formData.email}</span>
                 <br />
-                and your Tradie Mobile agent would be activated immediately.
+                and your Tradie AI agent would be activated immediately.
               </p>
             </div>
 

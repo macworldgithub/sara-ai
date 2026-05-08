@@ -417,7 +417,7 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
         </div>
         <div className="flex items-center gap-6">
           <span className="opacity-40">TRADIE_MOB_OS v1.0.4</span>
-          <span className="text-sara-light-green/40">Tradie Mobile_CORE</span>
+          <span className="text-sara-light-green/40">Tradie AI_CORE</span>
         </div>
       </footer>
     </div>

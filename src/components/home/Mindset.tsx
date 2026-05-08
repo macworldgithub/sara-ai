@@ -47,7 +47,7 @@ export default function Mindset({ onGetStarted, onWatchDemo }: MindsetProps) {
         {/* MISSION STATEMENT */}
         <p className="mb-8 max-w-2xl text-center text-sm leading-relaxed text-sara-light-grey sm:text-base">
           Our mission is to revolutionise utilities through simplicity and
-          automation. Just Tradie Mobile is built for tradies who want to focus
+          automation. Just Tradie AI is built for tradies who want to focus
           on the job — not the phone.
         </p>
 
