@@ -16,9 +16,9 @@ export default function HowItWorks({ onGetStarted }: HowItWorksProps) {
     {
       number: "02",
       icon: <Bot size={24} className="text-sara-dark-green" />,
-      title: "Bele.Ai Picks Up",
+      title: "Tradie Mobile Picks Up",
       description:
-        "If you don't answer, Bele.Ai answers with a professional greeting using your business name.",
+        "If you don't answer, Tradie Mobile answers with a professional greeting using your business name.",
     },
     {
       number: "03",
@@ -85,8 +85,6 @@ export default function HowItWorks({ onGetStarted }: HowItWorksProps) {
 
         {/* BOTTOM CTA */}
         <div className="my-2 flex justify-center">
-       
-
           <button
             onClick={onGetStarted}
             className="bg-sara-light-green group flex w-full items-center justify-center gap-3 rounded-md border border-sara-light-grey/35 px-8 py-4 text-sm uppercase text-sara-dark-green transition-all hover:border-sara-light-green hover:bg-[#b7c5a2] sm:w-auto max-sm:text-[14px]"

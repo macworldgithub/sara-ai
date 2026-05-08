@@ -4,9 +4,9 @@ export default function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 md:flex-row">
         {/* LEFT: Branding */}
         <div className="flex items-center gap-3">
-          <h2 className="font-display text-2xl tracking-tight text-sara-off-white">
+          {/* <h2 className="font-display text-2xl tracking-tight text-sara-off-white">
             JUST
-          </h2>
+          </h2> */}
           <div className="rounded-sm border border-sara-light-green/30 px-3 py-1">
             <span className="text-[8px] uppercase tracking-[0.25em] text-sara-light-green">
               Tradie Mobile
@@ -17,7 +17,7 @@ export default function Footer() {
         {/* RIGHT: Attribution */}
         <div className="text-center md:text-right">
           <p className="text-[8px] uppercase leading-relaxed tracking-[0.18em] text-sara-light-grey md:text-[10px]">
-            Powered by Bele.Ai — Revolutionising utilities Through{" "}
+            Powered by Tradie Mobile — Revolutionising utilities Through{" "}
             <br className="sm:hidden" /> Simplicity and Automation
           </p>
         </div>

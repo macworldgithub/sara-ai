@@ -104,11 +104,11 @@ export default function Demo({ onBack }: DemoProps) {
             {/* HEADERS */}
             <div className="space-y-4">
               <h1 className="text-3xl leading-tight tracking-tight text-sara-off-white md:text-5xl">
-                Experience Bele.Ai in Action
+                Experience Tradie Mobile in Action
               </h1>
               <p className="mx-auto max-w-md text-sm leading-relaxed text-sara-light-grey">
-                Watch how Bele.Ai handles a missed call, captures the lead, and
-                sends a real SMS to your phone.
+                Watch how Tradie Mobile handles a missed call, captures the
+                lead, and sends a real SMS to your phone.
               </p>
             </div>
 
@@ -154,8 +154,8 @@ export default function Demo({ onBack }: DemoProps) {
 
             {/* FOOTNOTE */}
             <p className="max-w-sm text-[10px] uppercase tracking-[0.18em] text-sara-mid-grey">
-              Business hours: Tradie gets 3 rings to answer. After hours:
-              Bele.Ai picks up automatically.
+              Business hours: Tradie gets 3 rings to answer. After hours: Tradie
+              Mobile picks up automatically.
             </p>
           </div>
         </div>
@@ -233,7 +233,9 @@ export default function Demo({ onBack }: DemoProps) {
             <div className="flex items-center gap-6">
               <span>00:00</span>
               <span>RINGS: {rings}/3</span>
-              <span className="text-sara-light-green opacity-60">BELE.AI</span>
+              <span className="text-sara-light-green opacity-60">
+                Tradie Mobile
+              </span>
             </div>
           </div>
         </aside>

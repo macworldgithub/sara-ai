@@ -24,13 +24,17 @@ export default function Navbar({
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* LEFT: Logo Section */}
         <div className="flex items-center gap-3">
-          <img src={sara} alt="Logo" className="h-16 w-auto object-contain scale-[1.4] origin-left" />
+          <img
+            src={sara}
+            alt="Logo"
+            className="h-16 w-auto object-contain scale-[1.4] origin-left"
+          />
         </div>
 
         {/* RIGHT (Desktop) - Shows only on LG screens (1024px) and above */}
         <div className="hidden lg:flex items-center gap-6">
           <span className="whitespace-nowrap text-[10px] uppercase tracking-[0.25em] text-sara-light-grey">
-            POWERED BY BELE.AI
+            POWERED BY Tradie Mobile
           </span>
 
           <div className="flex items-center gap-3">
@@ -83,7 +87,7 @@ export default function Navbar({
               POWERED BY
             </span>
             <span className="text-xs uppercase tracking-[0.25em] text-sara-off-white leading-none">
-              BELE.AI
+              Tradie Mobile
             </span>
           </div>
 

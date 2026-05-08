@@ -162,19 +162,57 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
 
       <main className="mx-auto w-full max-w-2xl px-6 pb-20 animate-in fade-in slide-in-from-bottom-8 duration-700">
         {step === 1 && (
-          <Section title="Your Details" copy="Tell us about yourself and your business.">
+          <Section
+            title="Your Details"
+            copy="Tell us about yourself and your business."
+          >
             <div className="grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-2">
-              <InputField label="Your Name" value={formData.name} icon={<User size={14} />} placeholder="Jon Smith" onChange={(v: string) => handleInputChange("name", v)} />
-              <InputField label="Company Name" value={formData.company} icon={<Briefcase size={14} />} placeholder="Jon's Plumbing" onChange={(v: string) => handleInputChange("company", v)} />
-              <InputField label="ACN (optional)" value={formData.acn} icon={<FileText size={14} />} placeholder="123 456 789" highlight onChange={(v: string) => handleInputChange("acn", v)} />
-              <InputField label="Email" value={formData.email} icon={<Mail size={14} />} placeholder="jon@plumbing.com.au" onChange={(v: string) => handleInputChange("email", v)} />
-              <InputField label="Password" type="password" value={formData.password} icon={<FileText size={14} />} placeholder="••••••••" onChange={(v: string) => handleInputChange("password", v)} />
+              <InputField
+                label="Your Name"
+                value={formData.name}
+                icon={<User size={14} />}
+                placeholder="Jon Smith"
+                onChange={(v: string) => handleInputChange("name", v)}
+              />
+              <InputField
+                label="Company Name"
+                value={formData.company}
+                icon={<Briefcase size={14} />}
+                placeholder="Jon's Plumbing"
+                onChange={(v: string) => handleInputChange("company", v)}
+              />
+              <InputField
+                label="ACN (optional)"
+                value={formData.acn}
+                icon={<FileText size={14} />}
+                placeholder="123 456 789"
+                highlight
+                onChange={(v: string) => handleInputChange("acn", v)}
+              />
+              <InputField
+                label="Email"
+                value={formData.email}
+                icon={<Mail size={14} />}
+                placeholder="jon@plumbing.com.au"
+                onChange={(v: string) => handleInputChange("email", v)}
+              />
+              <InputField
+                label="Password"
+                type="password"
+                value={formData.password}
+                icon={<FileText size={14} />}
+                placeholder="••••••••"
+                onChange={(v: string) => handleInputChange("password", v)}
+              />
             </div>
           </Section>
         )}
 
         {step === 2 && (
-          <Section title="What Trade Are You?" copy="This helps Bele.Ai qualify callers and check they need the right trade.">
+          <Section
+            title="What Trade Are You?"
+            copy="This helps Tradie Mobile qualify callers and check they need the right trade."
+          >
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {trades.map((t) => (
                 <button
@@ -205,26 +243,64 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
         )}
 
         {step === 3 && (
-          <Section title="Number Setup" copy="Your mobile number and optional geographic (landline) number.">
+          <Section
+            title="Number Setup"
+            copy="Your mobile number and optional geographic (landline) number."
+          >
             <div className="space-y-4">
-              <InputField label="Mobile Number" value={formData.mobile} icon={<Phone size={14} />} placeholder="0412 345 678" onChange={(v: string) => handleInputChange("mobile", v)} />
+              <InputField
+                label="Mobile Number"
+                value={formData.mobile}
+                icon={<Phone size={14} />}
+                placeholder="0412 345 678"
+                onChange={(v: string) => handleInputChange("mobile", v)}
+              />
 
-              <div onClick={() => setFormData({ ...formData, portMobile: !formData.portMobile })}>
-                <CheckboxField checked={formData.portMobile} label="Port this mobile number?" sub="CAT-A port typically takes 24-48 hours" />
+              <div
+                onClick={() =>
+                  setFormData({ ...formData, portMobile: !formData.portMobile })
+                }
+              >
+                <CheckboxField
+                  checked={formData.portMobile}
+                  label="Port this mobile number?"
+                  sub="CAT-A port typically takes 24-48 hours"
+                />
               </div>
 
               <div className="border-t border-sara-light-green/10" />
 
-              <div onClick={() => setFormData({ ...formData, wantGeo: !formData.wantGeo })}>
-                <CheckboxField checked={formData.wantGeo} label="Do you want a Geo (landline) number?" sub="e.g. 02 XXXX XXXX for a local presence" />
+              <div
+                onClick={() =>
+                  setFormData({ ...formData, wantGeo: !formData.wantGeo })
+                }
+              >
+                <CheckboxField
+                  checked={formData.wantGeo}
+                  label="Do you want a Geo (landline) number?"
+                  sub="e.g. 02 XXXX XXXX for a local presence"
+                />
               </div>
 
               {formData.wantGeo && (
                 <div className="animate-in space-y-4 border-l-2 border-sara-light-green/20 pl-4 pt-1 slide-in-from-left-4">
-                  <div onClick={() => setFormData({ ...formData, portGeo: !formData.portGeo })}>
-                    <CheckboxField checked={formData.portGeo} label="Port an existing Geo number" />
+                  <div
+                    onClick={() =>
+                      setFormData({ ...formData, portGeo: !formData.portGeo })
+                    }
+                  >
+                    <CheckboxField
+                      checked={formData.portGeo}
+                      label="Port an existing Geo number"
+                    />
                   </div>
-                  <InputField label="Existing Geo Number" value={formData.geoNumber} icon={<Plus size={14} />} placeholder="02 XXXX XXXX" onChange={(v: string) => handleInputChange("geoNumber", v)} />
+                  <InputField
+                    label="Existing Geo Number"
+                    value={formData.geoNumber}
+                    icon={<Plus size={14} />}
+                    placeholder="02 XXXX XXXX"
+                    onChange={(v: string) => handleInputChange("geoNumber", v)}
+                  />
                 </div>
               )}
             </div>
@@ -232,10 +308,25 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
         )}
 
         {step === 4 && (
-          <Section title="Working Hours & Delivery" copy="Set your business hours so Bele.Ai can greet callers differently after hours.">
+          <Section
+            title="Working Hours & Delivery"
+            copy="Set your business hours so Tradie Mobile can greet callers differently after hours."
+          >
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-              <InputField label="Opening Time" value={formData.openingTime} icon={<Clock size={14} />} placeholder="07:00 AM" onChange={(v: string) => handleInputChange("openingTime", v)} />
-              <InputField label="Closing Time" value={formData.closingTime} icon={<Clock size={14} />} placeholder="06:00 PM" onChange={(v: string) => handleInputChange("closingTime", v)} />
+              <InputField
+                label="Opening Time"
+                value={formData.openingTime}
+                icon={<Clock size={14} />}
+                placeholder="07:00 AM"
+                onChange={(v: string) => handleInputChange("openingTime", v)}
+              />
+              <InputField
+                label="Closing Time"
+                value={formData.closingTime}
+                icon={<Clock size={14} />}
+                placeholder="06:00 PM"
+                onChange={(v: string) => handleInputChange("closingTime", v)}
+              />
             </div>
 
             <div className="mt-8">
@@ -253,11 +344,13 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
             <div className="mt-8 space-y-4 rounded-2xl border border-sara-light-green/20 bg-sara-dark-grey p-6">
               <div className="flex items-center gap-2 text-sara-light-green">
                 <Briefcase size={16} />
-                <span className="text-xs uppercase tracking-[0.2em]">Payment</span>
+                <span className="text-xs uppercase tracking-[0.2em]">
+                  Payment
+                </span>
               </div>
               <p className="text-sm text-sara-light-grey">
-                Payment details would be collected here. Upfront payment required
-                before activation.
+                Payment details would be collected here. Upfront payment
+                required before activation.
               </p>
               <p className="text-[10px] uppercase tracking-[0.25em] text-rose-300">
                 (Demo only - no payment processing)
@@ -267,7 +360,10 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
         )}
 
         {step === 5 && (
-          <Section title="Confirm & Sign Up" copy="Review your details and accept the terms.">
+          <Section
+            title="Confirm & Sign Up"
+            copy="Review your details and accept the terms."
+          >
             <div className="space-y-10">
               <div className="space-y-4 rounded-3xl border border-sara-light-green/12 bg-sara-dark-grey p-10">
                 <div className="flex justify-center text-[10px] uppercase tracking-[0.25em] text-sara-mid-grey">
@@ -277,8 +373,14 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
                 <SummaryItem label="Company" value={formData.company || "—"} />
                 <SummaryItem label="Email" value={formData.email || "—"} />
                 <SummaryItem label="Trade" value={formData.trade || "—"} />
-                <SummaryItem label="Mobile" value={`${formData.mobile || "—"} ${formData.portMobile ? "(porting)" : ""}`} />
-                <SummaryItem label="Hours" value={`${formData.openingTime} — ${formData.closingTime}`} />
+                <SummaryItem
+                  label="Mobile"
+                  value={`${formData.mobile || "—"} ${formData.portMobile ? "(porting)" : ""}`}
+                />
+                <SummaryItem
+                  label="Hours"
+                  value={`${formData.openingTime} — ${formData.closingTime}`}
+                />
               </div>
 
               <div
@@ -297,7 +399,10 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
                   }`}
                 >
                   {agreedToTerms && (
-                    <Check size={16} className="stroke-[4] text-sara-dark-green" />
+                    <Check
+                      size={16}
+                      className="stroke-[4] text-sara-dark-green"
+                    />
                   )}
                 </div>
                 <div className="space-y-2">
@@ -305,8 +410,8 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
                     I agree to the Terms and Conditions
                   </p>
                   <p className="text-[10px] leading-relaxed text-sara-light-grey">
-                    Including payment terms, porting authorisation, and Bele.Ai
-                    service agreement.
+                    Including payment terms, porting authorisation, and Tradie
+                    Mobile service agreement.
                   </p>
                 </div>
               </div>
@@ -315,7 +420,10 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
         )}
 
         {step === 6 && (
-          <Section title="Verify Your Email" copy={`We've sent a 6-digit code to ${formData.email}`}>
+          <Section
+            title="Verify Your Email"
+            copy={`We've sent a 6-digit code to ${formData.email}`}
+          >
             <div className="flex flex-col items-center space-y-6">
               <input
                 type="text"
@@ -356,7 +464,7 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
                 In a real sign-up, you'd receive a confirmation email at <br />
                 <span className="text-sara-off-white">{formData.email}</span>
                 <br />
-                and your Bele.Ai agent would be activated immediately.
+                and your Tradie Mobile agent would be activated immediately.
               </p>
             </div>
 
@@ -379,7 +487,7 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
                   onSuccess &&
                   onSuccess(
                     { email: formData.email, name: formData.name },
-                    "dummy-token-after-signup"
+                    "dummy-token-after-signup",
                   )
                 }
                 className="group flex w-full items-center justify-center gap-3 rounded-md bg-sara-light-green px-8 py-4 text-sm uppercase tracking-[0.25em] text-sara-dark-green transition-all hover:bg-[#b7c5a2] sm:w-auto"
@@ -432,7 +540,9 @@ export default function Signup({ onBack, onSuccess }: SignupProps) {
                 </span>
               ) : (
                 <>
-                  {step === 5 ? <Check size={20} className="stroke-[3]" /> : null}
+                  {step === 5 ? (
+                    <Check size={20} className="stroke-[3]" />
+                  ) : null}
                   {step === 5 ? "Complete Sign Up" : "Next"}
                   {step !== 5 && (
                     <ArrowLeft className="h-5 w-5 rotate-180 transition-transform group-hover:translate-x-1" />
@@ -483,7 +593,9 @@ function InputField({
     <div className="space-y-3">
       <div className="flex items-center gap-2 text-sara-light-green">
         {icon}
-        <label className="text-[10px] uppercase tracking-[0.2em]">{label}</label>
+        <label className="text-[10px] uppercase tracking-[0.2em]">
+          {label}
+        </label>
       </div>
       <input
         type={type}

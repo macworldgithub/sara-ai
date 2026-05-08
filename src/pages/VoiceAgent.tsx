@@ -9,10 +9,11 @@ interface VoiceAgentProps {
 export default function VoiceAgent({ onBack }: VoiceAgentProps) {
   const [isSessionActive, setIsSessionActive] = useState(false);
   const [status, setStatus] = useState("Ready");
-  const [orbState, setOrbState] = useState<null | 'listening' | 'speaking'>(null);
+  const [orbState, setOrbState] = useState<null | "listening" | "speaking">(
+    null,
+  );
   const [agentTranscript, setAgentTranscript] = useState("");
   const [userTranscript, setUserTranscript] = useState("");
-
 
   const socketRef = useRef<Socket | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -33,54 +34,52 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
     const socket = io(BACKEND_URL);
     socketRef.current = socket;
 
-    socket.on('connect', () => {
-      console.log('Connected to server');
+    socket.on("connect", () => {
+      console.log("Connected to server");
     });
 
-    socket.on('session-started', (data) => {
-      console.log('Session started:', data.sessionId);
-      setStatus('Connected — Listening...');
-      setOrbState('listening');
+    socket.on("session-started", (data) => {
+      console.log("Session started:", data.sessionId);
+      setStatus("Connected — Listening...");
+      setOrbState("listening");
     });
 
-    socket.on('audio-delta', (data) => {
+    socket.on("audio-delta", (data) => {
       if (!isSessionActiveRef.current) return;
       queueAudioChunk(data.delta);
     });
 
-    let accumulatedAgentText = '';
-    socket.on('transcript-delta', (data) => {
+    let accumulatedAgentText = "";
+    socket.on("transcript-delta", (data) => {
       if (!isSessionActiveRef.current) return;
       accumulatedAgentText += data.delta;
       setAgentTranscript(accumulatedAgentText);
     });
 
-    socket.on('transcript-done', () => {
-      accumulatedAgentText = '';
+    socket.on("transcript-done", () => {
+      accumulatedAgentText = "";
     });
 
-    socket.on('user-transcript', (data) => {
+    socket.on("user-transcript", (data) => {
       if (!isSessionActiveRef.current) return;
       setUserTranscript(data.transcript);
     });
 
-    socket.on('speech-started', () => {
+    socket.on("speech-started", () => {
       if (!isSessionActiveRef.current) return;
       stopPlayback();
-      setOrbState('listening');
-      setStatus('Listening...');
-      setAgentTranscript('');
-      accumulatedAgentText = '';
+      setOrbState("listening");
+      setStatus("Listening...");
+      setAgentTranscript("");
+      accumulatedAgentText = "";
     });
 
-
-
-    socket.on('realtime-error', (data) => {
-      console.error('Realtime error:', data.error);
-      setStatus('Error: ' + (data.error?.message || 'Unknown'));
+    socket.on("realtime-error", (data) => {
+      console.error("Realtime error:", data.error);
+      setStatus("Error: " + (data.error?.message || "Unknown"));
     });
 
-    socket.on('session-closed', () => {
+    socket.on("session-closed", () => {
       handleEndSession();
     });
 
@@ -103,21 +102,29 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
   };
 
   const playNextChunk = () => {
-    if (playbackQueueRef.current.length === 0 || !audioContextRef.current || !isSessionActiveRef.current) {
+    if (
+      playbackQueueRef.current.length === 0 ||
+      !audioContextRef.current ||
+      !isSessionActiveRef.current
+    ) {
       isPlayingRef.current = false;
       if (isSessionActiveRef.current) {
-        setOrbState('listening');
-        setStatus('Listening...');
+        setOrbState("listening");
+        setStatus("Listening...");
       }
       return;
     }
 
     isPlayingRef.current = true;
-    setOrbState('speaking');
-    setStatus('Agent speaking...');
+    setOrbState("speaking");
+    setStatus("Agent speaking...");
 
     const samples = playbackQueueRef.current.shift()!;
-    const buffer = audioContextRef.current.createBuffer(1, samples.length, PLAYBACK_SAMPLE_RATE);
+    const buffer = audioContextRef.current.createBuffer(
+      1,
+      samples.length,
+      PLAYBACK_SAMPLE_RATE,
+    );
 
     buffer.getChannelData(0).set(samples);
 
@@ -169,12 +176,12 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
       }
       registerProcessor('pcm-processor', PCMProcessor);
     `;
-    const blob = new Blob([processorCode], { type: 'application/javascript' });
+    const blob = new Blob([processorCode], { type: "application/javascript" });
     const url = URL.createObjectURL(blob);
     await audioContext.audioWorklet.addModule(url);
     URL.revokeObjectURL(url);
 
-    if (audioContext.state === 'suspended') {
+    if (audioContext.state === "suspended") {
       await audioContext.resume();
     }
 
@@ -185,24 +192,24 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
         echoCancellation: true,
         noiseSuppression: true,
         autoGainControl: true,
-      }
+      },
     });
     mediaStreamRef.current = mediaStream;
 
     const source = audioContext.createMediaStreamSource(mediaStream);
-    const workletNode = new AudioWorkletNode(audioContext, 'pcm-processor');
+    const workletNode = new AudioWorkletNode(audioContext, "pcm-processor");
     workletNodeRef.current = workletNode;
 
     workletNode.port.onmessage = (e) => {
       if (!socketRef.current || !isSessionActiveRef.current) return;
 
       const pcm16 = new Uint8Array(e.data);
-      let binary = '';
+      let binary = "";
       for (let i = 0; i < pcm16.length; i++) {
         binary += String.fromCharCode(pcm16[i]);
       }
       const base64 = btoa(binary);
-      socketRef.current.emit('audio-chunk', { audio: base64 });
+      socketRef.current.emit("audio-chunk", { audio: base64 });
     };
 
     source.connect(workletNode);
@@ -215,7 +222,7 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
       workletNodeRef.current = null;
     }
     if (mediaStreamRef.current) {
-      mediaStreamRef.current.getTracks().forEach(t => t.stop());
+      mediaStreamRef.current.getTracks().forEach((t) => t.stop());
       mediaStreamRef.current = null;
     }
     if (audioContextRef.current) {
@@ -226,29 +233,28 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
 
   const handleStartSession = async () => {
     try {
-      setStatus('Connecting...');
+      setStatus("Connecting...");
 
       await startMicrophone();
       isSessionActiveRef.current = true;
       setIsSessionActive(true);
-      socketRef.current?.emit('start-session');
+      socketRef.current?.emit("start-session");
     } catch (err) {
-      console.error('Failed to start:', err);
-      setStatus('Microphone access denied');
+      console.error("Failed to start:", err);
+      setStatus("Microphone access denied");
     }
   };
 
   const handleEndSession = () => {
     isSessionActiveRef.current = false;
     setIsSessionActive(false);
-    socketRef.current?.emit('end-session');
+    socketRef.current?.emit("end-session");
     stopPlayback();
     stopMicrophone();
     setOrbState(null);
-    setStatus('Call ended');
+    setStatus("Call ended");
     setAgentTranscript("");
     setUserTranscript("");
-
   };
 
   return (
@@ -283,7 +289,6 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
       {/* MAIN CONTENT */}
       <main className="flex-1 flex flex-col items-center justify-center p-6 relative overflow-y-auto">
         <div className="w-full max-w-lg space-y-10 rounded-[40px] border border-sara-light-green/15 bg-sara-dark-grey/70 p-8 text-center shadow-sara-soft backdrop-blur-2xl md:p-12">
-
           <div className="space-y-4">
             <h1 className="bg-gradient-to-r from-sara-off-white to-sara-light-green bg-clip-text text-4xl tracking-tight text-transparent md:text-5xl">
               AI Voice Assistant
@@ -295,37 +300,61 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
 
           <div className="flex flex-col items-center space-y-8">
             {/* STATUS BADGE */}
-            <div className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${isSessionActive
-              ? 'border border-sara-light-green/25 bg-sara-light-green/10 text-sara-light-green shadow-[0_0_15px_rgba(163,177,138,0.12)]'
-              : 'border border-sara-off-white/12 bg-sara-off-white/5 text-sara-off-white'
-              }`}>
+            <div
+              className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${
+                isSessionActive
+                  ? "border border-sara-light-green/25 bg-sara-light-green/10 text-sara-light-green shadow-[0_0_15px_rgba(163,177,138,0.12)]"
+                  : "border border-sara-off-white/12 bg-sara-off-white/5 text-sara-off-white"
+              }`}
+            >
               {status}
             </div>
 
             {/* THE ORB */}
             <div className="relative group">
-              <div className={`relative z-10 flex h-32 w-32 items-center justify-center rounded-full transition-all duration-700 md:h-40 md:w-40 ${orbState === 'listening' ? 'scale-105 bg-sara-light-green text-sara-dark-green shadow-[0_0_50px_rgba(163,177,138,0.35)]' :
-                orbState === 'speaking' ? 'scale-110 bg-sara-dark-green text-sara-off-white shadow-[0_0_60px_rgba(0,73,58,0.45)]' :
-                  'scale-100 border border-sara-light-green/12 bg-sara-dark-grey shadow-xl'
-                }`}>
-                <Mic size={40} className={`transition-opacity duration-300 ${isSessionActive ? 'opacity-100' : 'opacity-40'}`} />
+              <div
+                className={`relative z-10 flex h-32 w-32 items-center justify-center rounded-full transition-all duration-700 md:h-40 md:w-40 ${
+                  orbState === "listening"
+                    ? "scale-105 bg-sara-light-green text-sara-dark-green shadow-[0_0_50px_rgba(163,177,138,0.35)]"
+                    : orbState === "speaking"
+                      ? "scale-110 bg-sara-dark-green text-sara-off-white shadow-[0_0_60px_rgba(0,73,58,0.45)]"
+                      : "scale-100 border border-sara-light-green/12 bg-sara-dark-grey shadow-xl"
+                }`}
+              >
+                <Mic
+                  size={40}
+                  className={`transition-opacity duration-300 ${isSessionActive ? "opacity-100" : "opacity-40"}`}
+                />
 
                 {/* PULSE RINGS */}
                 {isSessionActive && (
                   <>
-                    <div className={`absolute inset-0 rounded-full border-2 animate-ping opacity-20 ${orbState === 'speaking' ? 'border-sara-off-white' : 'border-sara-light-green'
-                      }`} />
-                    <div className={`absolute -inset-4 rounded-full border border-sara-light-green/15 ${orbState === 'speaking' ? 'animate-pulse' : ''
-                      }`} />
+                    <div
+                      className={`absolute inset-0 rounded-full border-2 animate-ping opacity-20 ${
+                        orbState === "speaking"
+                          ? "border-sara-off-white"
+                          : "border-sara-light-green"
+                      }`}
+                    />
+                    <div
+                      className={`absolute -inset-4 rounded-full border border-sara-light-green/15 ${
+                        orbState === "speaking" ? "animate-pulse" : ""
+                      }`}
+                    />
                   </>
                 )}
               </div>
 
               {/* ORB GLOW EFFECT */}
-              <div className={`absolute inset-0 -z-10 opacity-20 blur-3xl transition-all duration-700 ${orbState === 'listening' ? 'scale-150 bg-sara-light-green' :
-                orbState === 'speaking' ? 'scale-150 bg-sara-dark-green' :
-                  'bg-transparent'
-                }`} />
+              <div
+                className={`absolute inset-0 -z-10 opacity-20 blur-3xl transition-all duration-700 ${
+                  orbState === "listening"
+                    ? "scale-150 bg-sara-light-green"
+                    : orbState === "speaking"
+                      ? "scale-150 bg-sara-dark-green"
+                      : "bg-transparent"
+                }`}
+              />
             </div>
 
             {/* CONTROLS */}
@@ -354,7 +383,9 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
             <div className="space-y-4 border-t border-sara-light-green/15 pt-10 text-left">
               {agentTranscript && (
                 <div className="space-y-2">
-                  <span className="ml-2 text-[10px] uppercase tracking-[0.25em] text-sara-light-green/70">Agent</span>
+                  <span className="ml-2 text-[10px] uppercase tracking-[0.25em] text-sara-light-green/70">
+                    Agent
+                  </span>
                   <div className="rounded-r-2xl border-l-2 border-sara-light-green bg-sara-light-green/10 p-4 text-sm leading-relaxed text-sara-off-white italic">
                     {agentTranscript}
                   </div>
@@ -363,7 +394,9 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
 
               {userTranscript && (
                 <div className="space-y-2">
-                  <span className="ml-2 text-[10px] uppercase tracking-[0.25em] text-sara-light-grey/70">You</span>
+                  <span className="ml-2 text-[10px] uppercase tracking-[0.25em] text-sara-light-grey/70">
+                    You
+                  </span>
                   <div className="rounded-2xl bg-sara-black/35 p-4 text-sm leading-relaxed text-sara-light-grey">
                     {userTranscript}
                   </div>
@@ -371,20 +404,20 @@ export default function VoiceAgent({ onBack }: VoiceAgentProps) {
               )}
             </div>
           )}
-
-
         </div>
       </main>
 
       {/* FOOTER STATUS */}
       <footer className="flex h-10 w-full items-center justify-between border-t border-sara-light-green/15 bg-sara-black/60 px-6 font-mono text-[9px] uppercase tracking-[0.2em] text-sara-mid-grey">
         <div className="flex items-center gap-2">
-          <div className={`h-1 w-1 rounded-full ${isSessionActive ? 'bg-sara-light-green animate-pulse' : 'bg-sara-mid-grey'}`} />
-          {isSessionActive ? 'SESSION_ENCRYPTED_ACTIVE' : 'READY_TO_CONNECT'}
+          <div
+            className={`h-1 w-1 rounded-full ${isSessionActive ? "bg-sara-light-green animate-pulse" : "bg-sara-mid-grey"}`}
+          />
+          {isSessionActive ? "SESSION_ENCRYPTED_ACTIVE" : "READY_TO_CONNECT"}
         </div>
         <div className="flex items-center gap-6">
           <span className="opacity-40">TRADIE_MOB_OS v1.0.4</span>
-          <span className="text-sara-light-green/40">BELE.AI_CORE</span>
+          <span className="text-sara-light-green/40">Tradie Mobile_CORE</span>
         </div>
       </footer>
     </div>
